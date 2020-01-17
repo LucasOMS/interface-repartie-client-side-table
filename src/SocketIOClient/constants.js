@@ -1,3 +1,4 @@
 /* SOCKET.IO message Types */
 export const REGISTRATION_ASK = 'REGISTRATION_ASK';
 export const REGISTER_DEVICE = 'REGISTER_DEVICE';
+export const EXPLORE_PLACE = 'EXPLORE_PLACE';

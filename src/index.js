@@ -8,6 +8,7 @@ import TUIOManager from 'tuiomanager/core/TUIOManager'
 import ImageWidget from './ImageWidget/ImageWidget'
 
 import SocketIOClient from './SocketIOClient/SocketIOClient'
+import { EXPLORE_PLACE } from './SocketIOClient/constants';
 
 /* TUIOManager start */
 const tuioManager = new TUIOManager();
@@ -24,8 +25,12 @@ const buildApp = () => {
     imageWidget.addTo('#app')
     */
   const imageWidget = new ImageWidget(0, 0, 365, 289, 'assets/UCAlogoQhaut.png');
+  imageWidget.onTouchCreation = () => {
+    socketIOClient.sendEvent(EXPLORE_PLACE);
+    console.log('Ask for exploring place')
+  };
   $('#app')
-    .append(imageWidget.domElem)
+    .append(imageWidget.domElem);
 };
 
 $(window)
