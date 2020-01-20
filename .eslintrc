@@ -16,6 +16,13 @@
       0,
       "windows"
     ],
-    "semi": "off"
+    "semi": "off",
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": false,
+        "classes": true
+      }
+    ]
   }
 }

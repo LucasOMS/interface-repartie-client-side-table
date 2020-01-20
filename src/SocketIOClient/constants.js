@@ -2,3 +2,9 @@
 export const REGISTRATION_ASK = 'REGISTRATION_ASK';
 export const REGISTER_DEVICE = 'REGISTER_DEVICE';
 export const EXPLORE_PLACE = 'EXPLORE_PLACE';
+export const SERVER_REST_ROOT_PATH = 'http://localhost:4444';
+export const TABLE_IMAGE_SRC_PATH = 'assets/table.png';
+export const TABLET_IMAGE_SRC_PATH = 'assets/tablet.png';
+export const VR_IMAGE_SRC_PATH = 'assets/vr.png';
+export const PLAY_IMAGE_SRC_PATH = 'assets/play.png';
+export const REFRESH_IMAGE_SRC_PATH = 'assets/refresh.png';
