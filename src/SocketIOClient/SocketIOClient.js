@@ -74,6 +74,10 @@ class SocketIOClient {
     this._client.emit(REGISTER_DEVICE, { device_type: 'TABLE' });
     console.log('Registered as TABLE device');
   }
+
+  sendEvent(eventName) {
+    this._client.emit(eventName);
+  }
 }
 
 export default SocketIOClient
