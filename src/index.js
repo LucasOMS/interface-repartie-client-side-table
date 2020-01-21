@@ -6,7 +6,6 @@ import $ from 'jquery/dist/jquery.min'
 import TUIOManager from 'tuiomanager/core/TUIOManager'
 // import ImageElementWidget from 'tuiomanager/widgets/ElementWidget/ImageElementWidget/ImageElementWidget'
 import ImageWidget from './ImageWidget/ImageWidget'
-
 import SocketIOClient from './SocketIOClient/SocketIOClient'
 import { EXPLORE_PLACE, PLAY_IMAGE_SRC_PATH, REFRESH_IMAGE_SRC_PATH, SERVER_REST_ROOT_PATH, TABLE_IMAGE_SRC_PATH, TABLET_IMAGE_SRC_PATH, VR_IMAGE_SRC_PATH, } from './SocketIOClient/constants';
 

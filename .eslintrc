@@ -17,6 +17,7 @@
       "windows"
     ],
     "semi": "off",
+    "no-console": "off",
     "no-use-before-define": [
       "error",
       {
