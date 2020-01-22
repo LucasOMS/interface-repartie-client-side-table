@@ -7,7 +7,16 @@ import TUIOManager from 'tuiomanager/core/TUIOManager'
 // import ImageElementWidget from 'tuiomanager/widgets/ElementWidget/ImageElementWidget/ImageElementWidget'
 import ImageWidget from './ImageWidget/ImageWidget'
 import SocketIOClient from './SocketIOClient/SocketIOClient'
-import { EXPLORE_PLACE, PLAY_IMAGE_SRC_PATH, REFRESH_IMAGE_SRC_PATH, SERVER_REST_ROOT_PATH, TABLE_IMAGE_SRC_PATH, TABLET_IMAGE_SRC_PATH, VR_IMAGE_SRC_PATH, } from './SocketIOClient/constants';
+import {
+  DEVICE_CONNECTED,
+  DEVICE_DISCONNECTED,
+  EXPLORE_PLACE,
+  PLAY_IMAGE_SRC_PATH,
+  REFRESH_IMAGE_SRC_PATH,
+  TABLE_IMAGE_SRC_PATH,
+  TABLET_IMAGE_SRC_PATH,
+  VR_IMAGE_SRC_PATH,
+} from './SocketIOClient/constants';
 
 /* TUIOManager start */
 const tuioManager = new TUIOManager();
@@ -19,10 +28,20 @@ socketIOClient.start();
 
 /* App Code */
 const buildApp = () => {
-  buildPlayButton();
+  displayHome();
 };
 
 function constructGameHome() {
+  function bindGameHomeEvents() {
+    socketIOClient.onEvent(DEVICE_CONNECTED, () => {
+      console.log('Device connected during the game');
+    });
+    socketIOClient.onEvent(DEVICE_DISCONNECTED, () => {
+      console.log('Device disconnected during the game');
+    });
+  }
+
+  bindGameHomeEvents();
   clearContent();
 }
 
@@ -31,19 +50,45 @@ let deviceConnectedQuery;
 let buttonRefreshDevice;
 let buttonPlayWithDevices;
 
-function displayConnectedDevices() {
+let isVrConnected = false;
+let isTabletConnected = false;
+
+socketIOClient.onEvent(DEVICE_CONNECTED, (data) => {
+  switch (data.device_type) {
+    case 'VR':
+      isVrConnected = true;
+      break;
+    case 'TABLET':
+      isTabletConnected = true;
+      break;
+    default:
+  }
+  displayHome();
+});
+
+socketIOClient.onEvent(DEVICE_DISCONNECTED, (data) => {
+  switch (data.device_type) {
+    case 'VR':
+      isVrConnected = false;
+      break;
+    case 'TABLET':
+      isTabletConnected = false;
+      break;
+    default:
+  }
+  displayHome();
+});
+
+function displayHome() {
   const rootElement = $('#app');
   if (deviceConnectedQuery) {
     deviceConnectedQuery.abort();
   }
 
-  deviceConnectedQuery = $.get(`${SERVER_REST_ROOT_PATH}/devices`, (res) => {
-    destroyWidget();
-    clearContent();
-    console.log('Retrieving connected devices', res);
-    createDevicesPictures(res.table, res.tablet, res.vr);
-    constructPlayAndRefreshButton();
-  });
+  destroyWidget();
+  clearContent();
+  createDevicesPictures(true, isTabletConnected, isVrConnected);
+  constructPlayAndRefreshButton();
 
   function createDevicesPictures(table, tablet, vr) {
     let deviceCount = 0;
@@ -112,7 +157,7 @@ function displayConnectedDevices() {
       if (buttonRefreshDevice.isTouched(touch.x, touch.y)) {
         console.log('Retrieve connected devices again');
         clearContent();
-        displayConnectedDevices();
+        displayHome();
       }
     };
     buttonPlayWithDevices = new ImageWidget(860 - (playWidth / 2), 640 - (playHeight / 2), playWidth, playHeight, PLAY_IMAGE_SRC_PATH);
@@ -129,7 +174,6 @@ function displayConnectedDevices() {
 
   function destroyWidget() {
     if (buttonRefreshDevice) {
-      console.log(buttonRefreshDevice);
       TUIOManager.getInstance()
         .removeWidget(buttonRefreshDevice);
     }
@@ -140,19 +184,19 @@ function displayConnectedDevices() {
   }
 }
 
-function buildPlayButton() {
-  const rootElement = $('#app');
-  const playWidth = 191;
-  const playHeight = 156;
-  const buttonPlay = new ImageWidget(960 - (playWidth / 2), 540 - (playHeight / 2), playWidth, playHeight, PLAY_IMAGE_SRC_PATH);
-  buttonPlay.onTouchCreation = (touch) => {
-    if (buttonPlay.isTouched(touch.x, touch.y)) {
-      displayConnectedDevices();
-      buttonPlay.deleteWidget();
-    }
-  };
-  rootElement.append(buttonPlay.domElem);
-}
+// function buildPlayButton() {
+//   const rootElement = $('#app');
+//   const playWidth = 191;
+//   const playHeight = 156;
+//   const buttonPlay = new ImageWidget(960 - (playWidth / 2), 540 - (playHeight / 2), playWidth, playHeight, PLAY_IMAGE_SRC_PATH);
+//   buttonPlay.onTouchCreation = (touch) => {
+//     if (buttonPlay.isTouched(touch.x, touch.y)) {
+//       displayHome();
+//       buttonPlay.deleteWidget();
+//     }
+//   };
+//   rootElement.append(buttonPlay.domElem);
+// }
 
 function clearContent() {
   $('#app')

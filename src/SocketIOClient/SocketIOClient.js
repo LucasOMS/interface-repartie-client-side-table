@@ -33,6 +33,10 @@ class SocketIOClient {
     socketIOClientInstance = this;
 
     this._client = null;
+    this._activeEvents = [];
+    this._eventsAndCallback = {};
+    this._listeningEvents = [];
+
 
     return socketIOClientInstance
   }
@@ -77,6 +81,44 @@ class SocketIOClient {
 
   sendEvent(eventName) {
     this._client.emit(eventName);
+  }
+
+  /**
+   * @param {string} eventName
+   * @param {function} callback
+   */
+  onEvent(eventName, callback) {
+    this.enableEvent(eventName); // Activate the event
+    this._eventsAndCallback[eventName] = callback;
+    if (!this.isBoundEvent(eventName)) {
+      this._client.on(eventName, (data) => {
+        if (this.isActiveEvent(eventName)) {
+          this._eventsAndCallback[eventName](data);
+        }
+      })
+    }
+    this._listeningEvents.push(eventName);
+  }
+
+  isBoundEvent(eventName) {
+    return this._listeningEvents.indexOf(eventName) > -1;
+  }
+
+  removeEventCallback(eventName) {
+    this._eventsAndCallback[eventName] = undefined;
+  }
+
+  isActiveEvent(eventName) {
+    return this._activeEvents.indexOf(eventName) > -1;
+  }
+
+  disableEvent(eventName) {
+    // Remove from array
+    this._activeEvents.splice(this._activeEvents.indexOf(eventName), 1);
+  }
+
+  enableEvent(eventName) {
+    this._activeEvents.push(eventName);
   }
 }
 
