@@ -13,6 +13,7 @@ import {
   EXPLORE_PLACE,
   PLAY_IMAGE_SRC_PATH,
   REFRESH_IMAGE_SRC_PATH,
+  SOCKET_ENDPOINT,
   TABLE_IMAGE_SRC_PATH,
   TABLET_IMAGE_SRC_PATH,
   VR_IMAGE_SRC_PATH,
@@ -24,7 +25,7 @@ tuioManager.start();
 
 /* Start SocketIO Client */
 const socketIOClient = new SocketIOClient();
-socketIOClient.start();
+socketIOClient.start(SOCKET_ENDPOINT);
 
 /* App Code */
 const buildApp = () => {
@@ -202,11 +203,6 @@ function clearContent() {
   $('#app')
     .empty();
 }
-
-// TODO
-// function startGame() {
-//
-// }
 
 $(window)
   .ready(() => {
