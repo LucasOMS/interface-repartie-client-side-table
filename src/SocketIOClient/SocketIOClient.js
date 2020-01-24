@@ -79,8 +79,8 @@ class SocketIOClient {
     console.log('Registered as TABLE device');
   }
 
-  sendEvent(eventName) {
-    this._client.emit(eventName);
+  sendEvent(eventName, data = {}) {
+    this._client.emit(eventName, data);
   }
 
   /**
