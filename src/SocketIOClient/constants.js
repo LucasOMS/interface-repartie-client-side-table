@@ -1,8 +1,11 @@
 /* SOCKET.IO message Types */
 export const REGISTRATION_ASK = 'REGISTRATION_ASK';
 export const REGISTER_DEVICE = 'REGISTER_DEVICE';
+export const DEVICE_CONNECTED = 'DEVICE_CONNECTED';
+export const DEVICE_DISCONNECTED = 'DEVICE_DISCONNECTED';
 export const EXPLORE_PLACE = 'EXPLORE_PLACE';
 export const SERVER_REST_ROOT_PATH = 'http://localhost:4444';
+export const SOCKET_ENDPOINT = 'http://localhost:10000/';
 export const TABLE_IMAGE_SRC_PATH = 'assets/table.png';
 export const TABLET_IMAGE_SRC_PATH = 'assets/tablet.png';
 export const VR_IMAGE_SRC_PATH = 'assets/vr.png';
