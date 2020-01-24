@@ -12,7 +12,7 @@ import {
   DEVICE_DISCONNECTED,
   EXPLORE_PLACE,
   PLAY_IMAGE_SRC_PATH,
-  REFRESH_IMAGE_SRC_PATH,
+  SERVER_REST_ROOT_PATH,
   SOCKET_ENDPOINT,
   TABLE_IMAGE_SRC_PATH,
   TABLET_IMAGE_SRC_PATH,
@@ -53,6 +53,11 @@ let buttonPlayWithDevices;
 
 let isVrConnected = false;
 let isTabletConnected = false;
+$.get(`${SERVER_REST_ROOT_PATH}/devices`, (data) => {
+  isVrConnected = data.vr;
+  isTabletConnected = data.tablet;
+  displayHome();
+});
 
 socketIOClient.onEvent(DEVICE_CONNECTED, (data) => {
   switch (data.device_type) {
@@ -104,7 +109,7 @@ function displayHome() {
     }
 
     const centerX = 960;
-    const gap = 40;
+    const gap = 80;
     const centerY = 340;
 
     // Define const to compute total width and height
@@ -127,7 +132,7 @@ function displayHome() {
     // Construct Tablet
     if (tablet) {
       const tabletOriginX = centerX - (realWidth / 2) + widthUsed;
-      widthUsed += tabletImageWidth + (deviceCount > 1 ? gap : 0);
+      widthUsed += tabletImageWidth + gap;
       const tabletImage = new ImageWidget(tabletOriginX, centerY - (tabletImageHeight / 2), tabletImageWidth, tabletImageHeight, TABLET_IMAGE_SRC_PATH);
       rootElement.append(tabletImage.domElem);
     }
@@ -135,7 +140,7 @@ function displayHome() {
     // Construct Table
     if (table) {
       const tableOriginX = centerX - (realWidth / 2) + widthUsed;
-      widthUsed += tableImageWidth + (deviceCount > 2 ? gap : 0);
+      widthUsed += tableImageWidth + (vr ? gap : 0);
       const tableImage = new ImageWidget(tableOriginX, centerY - (tableImageHeight / 2), tableImageWidth, tableImageHeight, TABLE_IMAGE_SRC_PATH);
       rootElement.append(tableImage.domElem);
     }
@@ -151,17 +156,17 @@ function displayHome() {
   function constructPlayAndRefreshButton() {
     const playWidth = 191;
     const playHeight = 156;
-    const refreshWidth = 250;
-    const refreshHeight = 250;
-    buttonRefreshDevice = new ImageWidget(1060 - (refreshWidth / 2), 640 - (refreshHeight / 2), refreshWidth, refreshHeight, REFRESH_IMAGE_SRC_PATH);
-    buttonRefreshDevice.onTouchCreation = (touch) => {
-      if (buttonRefreshDevice.isTouched(touch.x, touch.y)) {
-        console.log('Retrieve connected devices again');
-        clearContent();
-        displayHome();
-      }
-    };
-    buttonPlayWithDevices = new ImageWidget(860 - (playWidth / 2), 640 - (playHeight / 2), playWidth, playHeight, PLAY_IMAGE_SRC_PATH);
+    // const refreshWidth = 250;
+    // const refreshHeight = 250;
+    // buttonRefreshDevice = new ImageWidget(1060 - (refreshWidth / 2), 640 - (refreshHeight / 2), refreshWidth, refreshHeight, REFRESH_IMAGE_SRC_PATH);
+    // buttonRefreshDevice.onTouchCreation = (touch) => {
+    //   if (buttonRefreshDevice.isTouched(touch.x, touch.y)) {
+    //     console.log('Retrieve connected devices again');
+    //     clearContent();
+    //     displayHome();
+    //   }
+    // };
+    buttonPlayWithDevices = new ImageWidget(960 - (playWidth / 2), 640 - (playHeight / 2), playWidth, playHeight, PLAY_IMAGE_SRC_PATH);
     buttonPlayWithDevices.onTouchCreation = (touch) => {
       if (buttonPlayWithDevices.isTouched(touch.x, touch.y)) {
         socketIOClient.sendEvent(EXPLORE_PLACE);
@@ -169,7 +174,7 @@ function displayHome() {
         constructGameHome();
       }
     };
-    rootElement.append(buttonRefreshDevice.domElem);
+    // rootElement.append(buttonRefreshDevice.domElem);
     rootElement.append(buttonPlayWithDevices.domElem);
   }
 
