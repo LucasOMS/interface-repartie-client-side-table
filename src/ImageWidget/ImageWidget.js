@@ -38,6 +38,7 @@ class ImageWidget extends TUIOWidget {
 
     this._domElem = $('<img>');
     this._domElem.attr('src', imgSrc);
+    this._domElem.attr('id', this.id);
     this._domElem.css('width', `${width}px`);
     this._domElem.css('height', `${height}px`);
     this._domElem.css('position', 'absolute');
