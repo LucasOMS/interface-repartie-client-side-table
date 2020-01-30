@@ -1,7 +1,15 @@
 import $ from 'jquery/dist/jquery.min'
 import TUIOManager from 'tuiomanager/core/TUIOManager';
 import ImageWidget from '../ImageWidget/ImageWidget';
-import { DEVICE_CONNECTED, DEVICE_DISCONNECTED, PLAY_IMAGE_SRC_PATH, SERVER_REST_ROOT_PATH, TABLE_IMAGE_SRC_PATH, TABLET_IMAGE_SRC_PATH, VR_IMAGE_SRC_PATH, } from '../SocketIOClient/constants';
+import {
+  DEVICE_CONNECTED,
+  DEVICE_DISCONNECTED,
+  PLAY_IMAGE_SRC_PATH,
+  SERVER_REST_ROOT_PATH,
+  TABLE_IMAGE_SRC_PATH,
+  TABLET_IMAGE_SRC_PATH,
+  VR_IMAGE_SRC_PATH,
+} from '../SocketIOClient/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import Builder from './builder';
 
