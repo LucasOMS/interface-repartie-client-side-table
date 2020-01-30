@@ -11,6 +11,7 @@
       1,
       200
     ],
+    "import/prefer-default-export": "off",
     "no-underscore-dangle": "off",
     "linebreak-style": [
       0,
