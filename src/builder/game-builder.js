@@ -1,11 +1,11 @@
 import $ from 'jquery/dist/jquery.min';
+import { WINDOW_HEIGHT, WINDOW_WIDTH } from 'tuiomanager/core/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
+import { StaticTextWidget } from '../TextWidget/static-text-widget';
 import Builder from './builder';
 import {
   DEVICE_DISCONNECTED,
   GAME_BACKGROUND_IMG,
-  LOCKER_ROOM_IMG,
-  REFEREE_IMG,
   STADIUM_IMG,
 } from '../SocketIOClient/constants';
 import StaticImageWidget from '../ImageWidget/StaticImageWidget';
@@ -16,8 +16,6 @@ export class GameBuilder extends Builder {
     super();
     this._background = null;
     this._stadium = null;
-    this._referee = null;
-    this._lockerRoom = null;
     this.rootElement = $('#app');
   }
 
@@ -38,19 +36,58 @@ export class GameBuilder extends Builder {
   draw() {
     this._background = new StaticImageWidget(0, 0, 1920, 1080, GAME_BACKGROUND_IMG);
     this.rootElement.append(this._background.domElem);
-    this._stadium = new StaticImageWidget(20, 20, undefined, undefined, STADIUM_IMG);
+    this._stadium = new StaticImageWidget(WINDOW_WIDTH / 2 - (715 / 2), WINDOW_HEIGHT / 2 - (1037 / 2), 715, 1037, STADIUM_IMG);
+    this._stadium.domElem.addClass('popup');
+    this._stadium.domElem.addClass('stadium-interactive');
     this.rootElement.append(this._stadium.domElem);
-    this._referee = new StaticImageWidget(550, 300, undefined, undefined, REFEREE_IMG);
-    this.rootElement.append(this._referee.domElem);
-    this._lockerRoom = new StaticImageWidget(730, 20, undefined, undefined, LOCKER_ROOM_IMG);
-    this.rootElement.append(this._lockerRoom.domElem);
+
+    this._text = new StaticTextWidget('TOUCHER POUR EXPLORER', 763, 700, 400, 100, 0, 1, {
+      fontSize: 68,
+      textAlign: 'center',
+      fontWeight: 'bold',
+    });
+    this._textReverse = new StaticTextWidget('TOUCHER POUR EXPLORER', 763, 177, 400, 100, 180, 1, {
+      fontSize: 68,
+      textAlign: 'center',
+      fontWeight: 'bold',
+    });
+    // Set classes
+    this._text.domElem.addClass('stadium-text');
+    this._textReverse.domElem.addClass('stadium-text');
+    // Hide elements
+    this._text.domElem.hide();
+    this._textReverse.domElem.hide();
+    // Add to DOM
+    this._text.addTo('#app');
+    this._textReverse.addTo('#app');
+    this.transition(GameBuilder.TRANSITIONS.START);
+  }
+
+  static get TRANSITIONS() {
+    return {
+      START: 'START',
+    }
+  }
+
+  async transition(transition) {
+    switch (transition) {
+      case GameBuilder.TRANSITIONS.START:
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            this._text.domElem.fadeIn();
+            this._textReverse.domElem.fadeIn();
+            resolve();
+          }, 400)
+        });
+      default:
+        console.error(`Unknown transition : ${transition}`);
+    }
+    return Promise.resolve();
   }
 
   undraw() {
     this._background.domElem.remove();
     this._stadium.domElem.remove();
-    this._referee.domElem.remove();
-    this._lockerRoom.domElem.remove();
   }
 
   unbindEvents() {

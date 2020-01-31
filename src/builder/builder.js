@@ -29,6 +29,10 @@ class Builder extends Subscriber {
     this.actions[actionName] = callback;
   }
 
+  async transition() {
+    return Promise.resolve();
+  }
+
   emitAction(actionName, data = undefined) {
     if (this.actions[actionName]) {
       this.actions[actionName](data);

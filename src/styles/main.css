@@ -3,3 +3,33 @@
     height: 100vh;
     overflow: hidden;
 }
+
+.popup {
+    animation: popup .5s forwards;
+}
+
+.stadium-interactive {
+    border: solid 3px red;
+}
+
+.stadium-text {
+    -webkit-text-stroke: 4px black;
+    color: red;
+}
+
+.stadium-interactive:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes popup {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
