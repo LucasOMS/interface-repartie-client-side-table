@@ -6,7 +6,7 @@ import $ from 'jquery/dist/jquery.min'
 import TUIOManager from 'tuiomanager/core/TUIOManager'
 import SocketIOClient from './SocketIOClient/SocketIOClient'
 import { SOCKET_ENDPOINT } from './SocketIOClient/constants';
-import { GameHomeBuilder } from './builder/game-home-builder';
+import { GameHomeBuilder, GameHomeExternalAction } from './builder/game-home-builder';
 import { HomeBuilder, HomeExternalAction } from './builder/home-builder';
 
 /* TUIOManager start */
@@ -29,6 +29,10 @@ const buildApp = () => {
     const ghb = new GameHomeBuilder();
     ghb.bindEvents();
     ghb.draw();
+    ghb.onAction(GameHomeExternalAction.LAUNCH_GAME, () => {
+      console.log('Launch Game');
+      ghb.destroy();
+    })
   })
 };
 
