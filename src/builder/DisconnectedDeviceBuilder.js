@@ -18,6 +18,7 @@ export class DisconnectedDeviceBuilder extends Builder {
   bindEvents() {
     SocketIOClient.getInstance()
       .onEvent(DEVICE_CONNECTED, () => {
+        console.log('Device reconnected');
         this.emitAction(DisconnectedDeviceBuilder.EXTERNAL_ACTION.DISCONNECTED_DEVICE_REACT);
       });
   }
@@ -32,6 +33,7 @@ export class DisconnectedDeviceBuilder extends Builder {
     this._warningWidget = new DisconnectedDeviceDialogWidget((WINDOW_WIDTH / 2) - (712 / 2),
       (WINDOW_HEIGHT / 2) - (442 / 2), 712, 442, this._deviceType);
     this._warningWidget.onClick = () => {
+      console.log('Continue without device');
       this.emitAction(DisconnectedDeviceBuilder.EXTERNAL_ACTION.DISCONNECTED_DEVICE_REACT);
     };
     this._warningWidget.addTo('#app');
