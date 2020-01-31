@@ -1,15 +1,7 @@
 import $ from 'jquery/dist/jquery.min'
-import TUIOManager from 'tuiomanager/core/TUIOManager';
-import ImageWidget from '../ImageWidget/ImageWidget';
-import {
-  DEVICE_CONNECTED,
-  DEVICE_DISCONNECTED,
-  PLAY_IMAGE_SRC_PATH,
-  SERVER_REST_ROOT_PATH,
-  TABLE_IMAGE_SRC_PATH,
-  TABLET_IMAGE_SRC_PATH,
-  VR_IMAGE_SRC_PATH,
-} from '../SocketIOClient/constants';
+import ImageClicWidget from '../ImageWidget/ImageClicWidget';
+import StaticImageWidget from '../ImageWidget/StaticImageWidget';
+import { DEVICE_CONNECTED, DEVICE_DISCONNECTED, PLAY_IMAGE_SRC_PATH, SERVER_REST_ROOT_PATH, TABLE_IMAGE_SRC_PATH, TABLET_IMAGE_SRC_PATH, VR_IMAGE_SRC_PATH, } from '../SocketIOClient/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import Builder from './builder';
 
@@ -69,11 +61,9 @@ export class HomeBuilder extends Builder {
     // Construct buttons only once
     const playWidth = 191;
     const playHeight = 156;
-    this._buttonPlay = new ImageWidget(960 - (playWidth / 2), 640 - (playHeight / 2), playWidth, playHeight, PLAY_IMAGE_SRC_PATH);
-    this._buttonPlay.onTouchCreation = (touch) => {
-      if (this._buttonPlay.isTouched(touch.x, touch.y)) {
-        this.emitAction('START_PLAY');
-      }
+    this._buttonPlay = new ImageClicWidget(960 - (playWidth / 2), 640 - (playHeight / 2), playWidth, playHeight, PLAY_IMAGE_SRC_PATH);
+    this._buttonPlay.onClick = () => {
+      this.emitAction('START_PLAY');
     };
     this.rootElement.append(this._buttonPlay.domElem);
   }
@@ -112,48 +102,35 @@ export class HomeBuilder extends Builder {
     if (this._tabletConnected) {
       const tabletOriginX = centerX - (realWidth / 2) + widthUsed;
       widthUsed += tabletImageWidth + gap;
-      this._tabletImage = new ImageWidget(tabletOriginX, centerY - (tabletImageHeight / 2), tabletImageWidth, tabletImageHeight, TABLET_IMAGE_SRC_PATH);
+      this._tabletImage = new StaticImageWidget(tabletOriginX, centerY - (tabletImageHeight / 2), tabletImageWidth, tabletImageHeight, TABLET_IMAGE_SRC_PATH);
       this.rootElement.append(this._tabletImage.domElem);
     }
 
     // Construct Table
     const tableOriginX = centerX - (realWidth / 2) + widthUsed;
     widthUsed += tableImageWidth + (this._vrConnected ? gap : 0);
-    this._tableImage = new ImageWidget(tableOriginX, centerY - (tableImageHeight / 2), tableImageWidth, tableImageHeight, TABLE_IMAGE_SRC_PATH);
+    this._tableImage = new StaticImageWidget(tableOriginX, centerY - (tableImageHeight / 2), tableImageWidth, tableImageHeight, TABLE_IMAGE_SRC_PATH);
     this.rootElement.append(this._tableImage.domElem);
 
     // Construct VR
     if (this._vrConnected) {
       const vrOriginX = centerX - (realWidth / 2) + widthUsed;
-      this._vrImage = new ImageWidget(vrOriginX, centerY - (vrImageHeight / 2), vrImageWidth, vrImageHeight, VR_IMAGE_SRC_PATH);
+      this._vrImage = new StaticImageWidget(vrOriginX, centerY - (vrImageHeight / 2), vrImageWidth, vrImageHeight, VR_IMAGE_SRC_PATH);
       this.rootElement.append(this._vrImage.domElem);
     }
   }
 
   undraw() {
     if (this._tableImage) {
-      TUIOManager.getInstance()
-        .removeWidget(this._tableImage);
-      $(`#${this._tableImage.id}`)
-        .remove();
+      this._tableImage.domElem.remove();
     }
     if (this._tabletImage) {
-      TUIOManager.getInstance()
-        .removeWidget(this._tabletImage);
-      $(`#${this._tabletImage.id}`)
-        .remove();
+      this._tabletImage.domElem.remove();
     }
     if (this._vrImage) {
-      TUIOManager.getInstance()
-        .removeWidget(this._vrImage);
-      $(`#${this._vrImage.id}`)
-        .remove();
+      this._vrImage.domElem.remove();
     }
-
-    TUIOManager.getInstance()
-      .removeWidget(this._buttonPlay);
-    $(`#${this._buttonPlay.id}`)
-      .remove();
+    this._buttonPlay.domElem.remove();
   }
 
   unbindEvents() {
