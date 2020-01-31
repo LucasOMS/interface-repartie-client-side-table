@@ -1,7 +1,16 @@
 import ImageElementWidget from 'tuiomanager/widgets/ElementWidget/ImageElementWidget/ImageElementWidget';
 import ImageClicWidget from '../ImageWidget/ImageClicWidget';
 import StaticImageWidget from '../ImageWidget/StaticImageWidget';
-import { DEVICE_CONNECTED, DEVICE_DISCONNECTED, HOME_BACKGROUND_IMG, JOURNAL_IMG, LAUNCH_BUTTON_IMG, REVERSE_JOURNAL_IMG, REVERSE_SYMBOLS_IMG, SYMBOLS_IMG, } from '../SocketIOClient/constants';
+import {
+  DEVICE_CONNECTED,
+  DEVICE_DISCONNECTED,
+  HOME_BACKGROUND_IMG,
+  JOURNAL_IMG,
+  LAUNCH_BUTTON_IMG,
+  REVERSE_JOURNAL_IMG,
+  REVERSE_SYMBOLS_IMG,
+  SYMBOLS_IMG,
+} from '../SocketIOClient/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import Builder from './builder';
 
