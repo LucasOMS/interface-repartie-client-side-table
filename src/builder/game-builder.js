@@ -1,13 +1,15 @@
 import $ from 'jquery/dist/jquery.min';
-import TUIOManager from 'tuiomanager/core/TUIOManager';
+import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import Builder from './builder';
 import {
+  DEVICE_DISCONNECTED,
   GAME_BACKGROUND_IMG,
   LOCKER_ROOM_IMG,
   REFEREE_IMG,
   STADIUM_IMG,
 } from '../SocketIOClient/constants';
 import StaticImageWidget from '../ImageWidget/StaticImageWidget';
+import { DisconnectedDeviceBuilder } from './DisconnectedDeviceBuilder';
 
 export class GameBuilder extends Builder {
   constructor() {
@@ -20,6 +22,17 @@ export class GameBuilder extends Builder {
   }
 
   bindEvents() {
+    SocketIOClient.getInstance()
+      .onEvent(DEVICE_DISCONNECTED, (data) => {
+        this.unbindEvents();
+        const builder = new DisconnectedDeviceBuilder(data.device_type);
+        builder.bindEvents();
+        builder.draw();
+        builder.onAction(DisconnectedDeviceBuilder.EXTERNAL_ACTION.DISCONNECTED_DEVICE_REACT, () => {
+          builder.destroy();
+          this.bindEvents();
+        });
+      });
   }
 
   draw() {
@@ -34,17 +47,16 @@ export class GameBuilder extends Builder {
   }
 
   undraw() {
-    TUIOManager.getInstance().removeWidget(this._background);
-    $(`#${this._background.id}`).remove();
-    TUIOManager.getInstance().removeWidget(this._stadium);
-    $(`#${this._stadium.id}`).remove();
-    TUIOManager.getInstance().removeWidget(this._referee);
-    $(`#${this._referee.id}`).remove();
-    TUIOManager.getInstance().removeWidget(this._lockerRoom);
-    $(`#${this._lockerRoom.id}`).remove();
+    this._background.domElem.remove();
+    this._stadium.domElem.remove();
+    this._referee.domElem.remove();
+    this._lockerRoom.domElem.remove();
   }
 
   unbindEvents() {
+    SocketIOClient.getInstance()
+      .onEvent(DEVICE_DISCONNECTED, () => {
+      });
   }
 }
 

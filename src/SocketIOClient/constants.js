@@ -21,4 +21,5 @@ export const GAME_BACKGROUND_IMG = 'assets/game-background.png';
 export const STADIUM_IMG = 'assets/stadium.png';
 export const REFEREE_IMG = 'assets/referee.png';
 export const LOCKER_ROOM_IMG = 'assets/locker-room.png';
-export const REFRESH_IMAGE_SRC_PATH = 'assets/refresh.png';
+export const VR_DISCONNECTED_IMG = 'assets/vr_disconnected.png';
+export const TABLET_DISCONNECTED_IMG = 'assets/tablet_disconnected.png';
