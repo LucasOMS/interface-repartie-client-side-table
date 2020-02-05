@@ -23,3 +23,7 @@ export const REFEREE_IMG = 'assets/referee.png';
 export const LOCKER_ROOM_IMG = 'assets/locker-room.png';
 export const VR_DISCONNECTED_IMG = 'assets/vr_disconnected.png';
 export const TABLET_DISCONNECTED_IMG = 'assets/tablet_disconnected.png';
+export const TAKE_VR_IMG = 'assets/devices/take_vr.png';
+export const TAKE_TABLET_IMG = 'assets/devices/take_tablet.png';
+export const TAKE_VR_WHITE_IMG = 'assets/devices/take_vr_white.png';
+export const TAKE_TABLET_WHITE_IMG = 'assets/devices/take_tablet_white.png';

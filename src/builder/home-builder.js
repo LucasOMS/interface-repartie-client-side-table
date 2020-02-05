@@ -1,6 +1,6 @@
 import $ from 'jquery/dist/jquery.min'
-import ImageClicWidget from '../ImageWidget/ImageClicWidget';
-import StaticImageWidget from '../ImageWidget/StaticImageWidget';
+import ImageClicWidget from '../ImageWidget/image-clic-widget';
+import StaticImageWidget from '../ImageWidget/static-image-widget';
 import {
   DEVICE_CONNECTED,
   DEVICE_DISCONNECTED,

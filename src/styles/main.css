@@ -9,7 +9,7 @@
 }
 
 .stadium-interactive {
-    border: solid 3px red;
+    transition: left 2s;
 }
 
 .stadium-text {
