@@ -39,7 +39,7 @@ export class GameHomeBuilder extends Builder {
 
   draw() {
     this._background = new StaticImageWidget(0, 0, 1920, 1080, HOME_BACKGROUND_IMG);
-    this._journal = new ImageElementWidget(150, 600, 471, 440, 0, 1, JOURNAL_IMG);
+    this._journal = new ImageElementWidget(1250, 600, 471, 440, 0, 1, JOURNAL_IMG);
     this._reverseJournal = new ImageElementWidget(100, 50, 471, 440, 0, 1, REVERSE_JOURNAL_IMG);
     this._reverseSymbols = new StaticImageWidget(1200, 50, 301, 322, REVERSE_SYMBOLS_IMG);
     this._symbols = new StaticImageWidget(450, 700, 301, 322, SYMBOLS_IMG);
