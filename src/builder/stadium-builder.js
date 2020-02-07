@@ -57,6 +57,7 @@ export class StadiumBuilder extends Builder {
           await this.transition(StadiumBuilder.TRANSITIONS.SWIPE_LEFT);
           this.emitAction(StadiumBuilder.ACTIONS.FINISHED);
           this.state = 'DONE';
+          this._clue.domElem.removeClass('stadium-interactive');
         }
       });
   }
@@ -100,6 +101,9 @@ export class StadiumBuilder extends Builder {
             this._waitingAction.domElem.css('z-index', ElementWidget.zIndexGlobal + 1);
             this._waitingAction.addTo('#app');
           });
+      } else {
+        this._referee.domElem.css('z-index', ElementWidget.zIndexGlobal + 1);
+        this._clue.domElem.css('z-index', ElementWidget.zIndexGlobal + 1);
       }
       // endregion
     };
@@ -188,6 +192,9 @@ export class StadiumBuilder extends Builder {
   unbindEvents() {
     SocketIOClient.getInstance()
       .onEvent(CLUE_FOUND, () => {
+      });
+    SocketIOClient.getInstance()
+      .onEvent(END_TALK, () => {
       });
   }
 }
