@@ -33,3 +33,5 @@ export const TAKE_VR_IMG = 'assets/devices/take_vr.png';
 export const TAKE_TABLET_IMG = 'assets/devices/take_tablet.png';
 export const TAKE_VR_WHITE_IMG = 'assets/devices/take_vr_white.png';
 export const TAKE_TABLET_WHITE_IMG = 'assets/devices/take_tablet_white.png';
+export const STADIUM_ID = 1;
+export const LOCKER_ROOM_ID = 2;
