@@ -1,6 +1,4 @@
 import $ from 'jquery/dist/jquery.min'
-import ImageClicWidget from '../ImageWidget/image-clic-widget';
-import StaticImageWidget from '../ImageWidget/static-image-widget';
 import {
   DEVICE_CONNECTED,
   DEVICE_DISCONNECTED,
@@ -11,6 +9,8 @@ import {
   VR_IMAGE_SRC_PATH,
 } from '../SocketIOClient/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
+import ImageClicWidget from '../widget/images/image-clic-widget';
+import StaticImageWidget from '../widget/images/static-image-widget';
 import Builder from './builder';
 
 export class HomeBuilder extends Builder {

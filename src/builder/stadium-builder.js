@@ -1,9 +1,9 @@
 import $ from 'jquery/dist/jquery.min';
 import { WINDOW_HEIGHT, WINDOW_WIDTH } from 'tuiomanager/core/constants';
 import ElementWidget from 'tuiomanager/widgets/ElementWidget/ElementWidget';
-import { AnotherDeviceActionWidget } from '../ImageWidget/another-device-action-widget';
-import ImageClicWidget from '../ImageWidget/image-clic-widget';
-import StaticImageWidget from '../ImageWidget/static-image-widget';
+import { AnotherDeviceActionWidget } from '../widget/another-device-action-widget';
+import ImageClicWidget from '../widget/images/image-clic-widget';
+import StaticImageWidget from '../widget/images/static-image-widget';
 import {
   CLUE_FOUND,
   EXPLORE_PLACE,
@@ -12,7 +12,7 @@ import {
   TAKE_VR_IMG,
 } from '../SocketIOClient/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
-import { StaticTextWidget } from '../TextWidget/static-text-widget';
+import { StaticTextWidget } from '../widget/static-text-widget';
 import Builder from './builder';
 
 export class StadiumBuilder extends Builder {

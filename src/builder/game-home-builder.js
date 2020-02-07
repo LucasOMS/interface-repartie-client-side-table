@@ -1,6 +1,6 @@
 import ImageElementWidget from 'tuiomanager/widgets/ElementWidget/ImageElementWidget/ImageElementWidget';
-import ImageClicWidget from '../ImageWidget/image-clic-widget';
-import StaticImageWidget from '../ImageWidget/static-image-widget';
+import ImageClicWidget from '../widget/images/image-clic-widget';
+import StaticImageWidget from '../widget/images/static-image-widget';
 import {
   DEVICE_CONNECTED,
   DEVICE_DISCONNECTED,

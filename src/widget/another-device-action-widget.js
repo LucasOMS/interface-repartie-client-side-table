@@ -1,4 +1,4 @@
-import StaticImageWidget from './static-image-widget';
+import StaticImageWidget from './images/static-image-widget';
 
 export class AnotherDeviceActionWidget extends StaticImageWidget {
   constructor(x, y, width, height, imgSrc) {

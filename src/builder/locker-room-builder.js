@@ -1,5 +1,5 @@
 import $ from 'jquery/dist/jquery.min';
-import ImageClicWidget from '../ImageWidget/image-clic-widget';
+import ImageClicWidget from '../widget/images/image-clic-widget';
 import { LOCKER_ROOM_IMG } from '../SocketIOClient/constants';
 import Builder from './builder';
 
