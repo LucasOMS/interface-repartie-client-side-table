@@ -12,6 +12,10 @@ export class GameBuilder extends Builder {
     this._stadium.onAction(StadiumBuilder.ACTIONS.FINISHED, () => {
       this._lockerRoom = new LockerRoomBuilder();
       this._lockerRoom.draw();
+      this._lockerRoom.bindEvents();
+      // this._lockerRoom.onAction(LockerRoomBuilder.ACTIONS.FINISHED, () => {
+      //   this._adidasBuilder = new AdidasBuilder();
+      // })
     })
   }
 
