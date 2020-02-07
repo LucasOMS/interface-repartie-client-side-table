@@ -58,9 +58,3 @@ export class GameBuilder extends Builder {
       });
   }
 }
-
-export const GameExternalAction = {
-  EXPLORE_STADIUM: 'EXPLORE_STADIUM',
-  EXPLORE_LOCKER_ROOM: 'EXPLORE_LOCKER_ROOM',
-  TALK_WITH_REFEREE: 'TALK_WITH_REFEREE',
-};
