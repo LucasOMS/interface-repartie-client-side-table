@@ -27,7 +27,7 @@ export class DragWidget extends ElementWidget {
 
     this.canZoom(widget.canZoomTangible, widget.canZoomTactile);
     this.canRotate(widget.canRotateTangible, widget.canRotateTactile);
-    this.canMove(widget.canMoveTangible, widget.canMoveTactile);
+    this.canMove(true, true);
     this.canDelete(widget.canDeleteTangible, widget.canDeleteTactile);
 
     this.onDrop = () => {
