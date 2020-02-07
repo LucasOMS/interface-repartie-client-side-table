@@ -4,6 +4,7 @@ import Builder from './builder';
 import { DisconnectedDeviceBuilder } from './disconnected-device-builder';
 import { LockerRoomBuilder } from './locker-room-builder';
 import { StadiumBuilder } from './stadium-builder';
+import { AdidasBuilder } from './adidas-builder';
 
 export class GameBuilder extends Builder {
   constructor() {
@@ -13,9 +14,10 @@ export class GameBuilder extends Builder {
       this._lockerRoom = new LockerRoomBuilder();
       this._lockerRoom.draw();
       this._lockerRoom.bindEvents();
-      // this._lockerRoom.onAction(LockerRoomBuilder.ACTIONS.FINISHED, () => {
-      //   this._adidasBuilder = new AdidasBuilder();
-      // })
+      this._lockerRoom.onAction(LockerRoomBuilder.ACTIONS.FINISHED, () => {
+        this._adidasBuilder = new AdidasBuilder();
+        this._adidasBuilder.draw();
+      })
     })
   }
 
