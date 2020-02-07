@@ -4,6 +4,10 @@
     overflow: hidden;
 }
 
+.background {
+    background-color: black;
+}
+
 .popup {
     animation: popup .5s forwards;
 }

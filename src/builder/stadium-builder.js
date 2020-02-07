@@ -68,6 +68,7 @@ export class StadiumBuilder extends Builder {
 
   _drawInitialStadium() {
     this._background = new StaticImageWidget(0, 0, 1920, 1080, GAME_BACKGROUND_IMG);
+    this._background.domElem.addClass('background');
     this.rootElement.append(this._background.domElem);
     this._stadium = new ImageClicWidget(WINDOW_WIDTH / 2 - (715 / 2), WINDOW_HEIGHT / 2 - (1037 / 2), 715, 1037, STADIUM_IMG);
     this._stadium.domElem.addClass('popup');
@@ -117,7 +118,6 @@ export class StadiumBuilder extends Builder {
   _addClueOnTheStadium() {
     this._clue = new ImageElementWidget(800, 380, 317, 298, 0, 1, NOTE_IMG);
     this._clue.domElem.css('z-index', ElementWidget.zIndexGlobal + 1);
-    this._clue.domElem.addClass('stadium-interactive');
     this._clue.domElem.hide();
     this._clue.addTo('#app');
     this._referee = new StaticImageWidget(1180, 450, 156, 234, REFEREE_IMG);
@@ -171,6 +171,7 @@ export class StadiumBuilder extends Builder {
         });
       case StadiumBuilder.TRANSITIONS.SWIPE_LEFT:
         return new Promise((resolve) => {
+          this._clue.domElem.addClass('stadium-interactive');
           this._stadium.domElem.css('left', '25px');
           this._clue.domElem.css('left', '150px');
           this._referee.domElem.css('left', '600px');
