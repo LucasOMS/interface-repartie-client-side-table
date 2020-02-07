@@ -10,7 +10,7 @@ import {
   END_TALK,
   EXPLORE_PLACE,
   GAME_BACKGROUND_IMG,
-  NOTE_IMG, REFEREE_IMG,
+  NOTE_IMG, REFEREE_AFTER_IMG, REFEREE_IMG,
   STADIUM_IMG,
   TAKE_VR_IMG,
 } from '../SocketIOClient/constants';
@@ -179,6 +179,9 @@ export class StadiumBuilder extends Builder {
           this._stadium.domElem.css('left', '25px');
           this._clue.domElem.css('left', '150px');
           this._referee.domElem.css('left', '600px');
+          this._referee.domElem.attr('src', REFEREE_AFTER_IMG);
+          this._referee.domElem.css('width', '156px');
+          this._referee.domElem.css('height', '154px');
           setTimeout(() => {
             resolve();
           }, 2000);

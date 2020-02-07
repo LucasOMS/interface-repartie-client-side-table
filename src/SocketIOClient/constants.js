@@ -22,6 +22,7 @@ export const GAME_BACKGROUND_IMG = 'assets/game-background.png';
 export const STADIUM_IMG = 'assets/stadium.png';
 export const NOTE_IMG = 'assets/note.png';
 export const REFEREE_IMG = 'assets/referee.png';
+export const REFEREE_AFTER_IMG = 'assets/referee_after.png';
 export const LOCKER_ROOM_IMG = 'assets/locker-room.png';
 export const SOCCER_BALL_IMG = 'assets/soccer_ball.png';
 export const WAREHOUSE_IMG = 'assets/warehouse.png';
