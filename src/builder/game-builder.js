@@ -1,7 +1,8 @@
-import { DEVICE_DISCONNECTED } from '../SocketIOClient/constants';
+import { DEVICE_DISCONNECTED, EXPLORE_PLACE } from '../SocketIOClient/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import Builder from './builder';
 import { DisconnectedDeviceBuilder } from './disconnected-device-builder';
+import { ExplorePlaceAsTabletBuilder } from './explore-place-as-tablet-builder';
 import { LockerRoomBuilder } from './locker-room-builder';
 import { StadiumBuilder } from './stadium-builder';
 
@@ -26,6 +27,11 @@ export class GameBuilder extends Builder {
           builder.destroy();
           this.bindEvents();
         });
+      });
+    SocketIOClient.getInstance()
+      .onEvent(EXPLORE_PLACE, () => {
+        const replaceTabletBuilder = new ExplorePlaceAsTabletBuilder(2);
+        replaceTabletBuilder.draw();
       });
     this._stadium.bindEvents();
   }
