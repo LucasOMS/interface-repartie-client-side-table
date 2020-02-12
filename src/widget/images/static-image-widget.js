@@ -4,6 +4,7 @@
 
 // Import JQuery
 import $ from 'jquery/dist/jquery.min';
+import ElementWidget from 'tuiomanager/widgets/ElementWidget/ElementWidget';
 
 /**
  * Main class to manage StaticImageWidget.
@@ -30,6 +31,8 @@ class StaticImageWidget {
     this._domElem.css('position', 'absolute');
     this._domElem.css('left', `${x}px`);
     this._domElem.css('top', `${y}px`);
+    ElementWidget.zIndexGlobal += 1;
+    this._domElem.css('z-index', ElementWidget.zIndexGlobal);
   }
 
   /**

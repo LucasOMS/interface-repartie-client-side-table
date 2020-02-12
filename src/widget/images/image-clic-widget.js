@@ -24,7 +24,6 @@ class ImageClicWidget extends ElementWidget {
    */
   constructor(x, y, width, height, imgSrc) {
     super(x, y, width, height, 0, 1);
-
     this._domElem = $('<img>');
     this._domElem.attr('src', imgSrc);
     this._domElem.attr('id', this.id);
@@ -33,16 +32,42 @@ class ImageClicWidget extends ElementWidget {
     this._domElem.css('position', 'absolute');
     this._domElem.css('left', `${x}px`);
     this._domElem.css('top', `${y}px`);
+    this._domElem.css('z-index', `${this.zIndex}`);
 
     this.canMove(false, false);
     this.canDelete(false, false);
     this.canRotate(false, false);
     this.canZoom(false, false);
+
+    this._initialZindex = this.zIndex;
+    this.shouldGoTop(true);
+  }
+
+  shouldGoTop(goTopOnClic) {
+    this._shouldGoTop = goTopOnClic;
   }
 
   onTouchCreation(tuioTouch) {
     super.onTouchCreation(tuioTouch);
-    if (document.elementFromPoint(tuioTouch.x, tuioTouch.y).id === this.id && this.onClick) {
+    if (!this._shouldGoTop) {
+      this.domElem.css('z-index', this._initialZindex);
+    }
+  }
+
+  onTouchUpdate(tuioTouch) {
+    super.onTouchUpdate(tuioTouch);
+    if (!this._shouldGoTop) {
+      this.domElem.css('z-index', this._initialZindex);
+    }
+  }
+
+  onTouchDeletion(tuioTouchId) {
+    super.onTouchDeletion(tuioTouchId);
+    if (!this._shouldGoTop) {
+      this.domElem.css('z-index', this._initialZindex);
+    }
+    const tuioTouch = this._lastTouchesValues[tuioTouchId];
+    if (tuioTouch && document.elementFromPoint(tuioTouch.x, tuioTouch.y).id === this.id && this.onClick) {
       this.onClick(tuioTouch);
     }
   }

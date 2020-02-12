@@ -5,10 +5,11 @@ import {
   CLUE_BALLON_IMG,
   CLUE_FOUND, CLUE_NOTE_ID,
   CLUE_SHOES_ID, CLUE_SHOES_IMG,
-  DEVICE_DISCONNECTED, END_TALK, EXPLORE_PLACE,
+  DEVICE_DISCONNECTED, END_TALK, EXPLORE_PLACE, SCIENTIST_DROP_ZONE_NAME,
 } from '../SocketIOClient/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import { DragWidget } from '../widget/decorators/drag-n-drop/drag-widget';
+import { AdidasBuilder } from './adidas-builder';
 import Builder from './builder';
 import { DisconnectedDeviceBuilder } from './disconnected-device-builder';
 import { ExplorePlaceAsTabletBuilder } from './explore-place-as-tablet-builder';
@@ -43,7 +44,12 @@ export class GameBuilder extends Builder {
           await this._stadium.transition(StadiumBuilder.TRANSITIONS.FINISH_VR);
           await this._stadium.transition(StadiumBuilder.TRANSITIONS.CLUE_FOUND);
         } else {
-          this._addClue(clueId)
+          this._addClue(clueId);
+          if (clueId === CLUE_SHOES_ID) {
+            this._adidas = new AdidasBuilder();
+            this._adidas.bindEvents();
+            this._adidas.draw();
+          }
         }
       });
     SocketIOClient.getInstance()
@@ -71,20 +77,38 @@ export class GameBuilder extends Builder {
   _addClue(clueId) {
     switch (clueId) {
       case CLUE_BALL_ID:
-        console.log('Add ball clue on the table');
+        if (this.foundBall) {
+          return;
+        }
+        this.foundBall = true;
         this._clueBallWidget = new DragWidget(
           new ImageElementWidget(0, 0, 250, 250, 0, 1, CLUE_BALLON_IMG),
         );
         this._clueBallWidget.domElem.addClass('popup');
         this._clueBallWidget.addTo(this.rootElement);
+        this._clueBallWidget.onDrop = (zone) => {
+          if (zone === SCIENTIST_DROP_ZONE_NAME) {
+            // TODO Build answer dialog widget
+            console.log('Show ball to scientist');
+          }
+        };
         break;
       case CLUE_SHOES_ID:
-        console.log('Add shoes clue on the table');
+        if (this.foundShoe) {
+          return;
+        }
+        this.foundShoe = true;
         this._shoeBallWidget = new DragWidget(
           new ImageElementWidget(0, 0, 250, 250, 0, 1, CLUE_SHOES_IMG),
         );
         this._shoeBallWidget.domElem.addClass('popup');
         this._shoeBallWidget.addTo(this.rootElement);
+        this._shoeBallWidget.onDrop = (zone) => {
+          if (zone === SCIENTIST_DROP_ZONE_NAME) {
+            // TODO Build answer dialog widget
+            console.log('Show shoes to scientist');
+          }
+        };
         break;
       default:
         console.log(`Unknown clue id : ${clueId}`);
@@ -100,6 +124,9 @@ export class GameBuilder extends Builder {
     this._stadium.undraw();
     if (this._clueBallWidget) {
       this._clueBallWidget.domElem.remove();
+    }
+    if (this._shoeBallWidget) {
+      this._shoeBallWidget.domElem.remove();
     }
   }
 

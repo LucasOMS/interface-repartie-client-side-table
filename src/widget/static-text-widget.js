@@ -24,6 +24,8 @@ export class StaticTextWidget extends ElementWidget {
       .css('text-align', optionsC.textAlign)
       .css('font-size', `${optionsC.fontSize}px`)
       .css('font-weight', optionsC.fontWeight);
+    ElementWidget.zIndexGlobal += 1;
+    this._domElem.css('z-index', ElementWidget.zIndexGlobal);
   }
 
   addTo(id) {
