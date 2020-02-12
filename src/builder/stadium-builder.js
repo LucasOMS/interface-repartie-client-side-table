@@ -6,8 +6,6 @@ import { AnotherDeviceActionWidget } from '../widget/another-device-action-widge
 import ImageClicWidget from '../widget/images/image-clic-widget';
 import StaticImageWidget from '../widget/images/static-image-widget';
 import {
-  CLUE_FOUND,
-  END_TALK,
   EXPLORE_PLACE,
   GAME_BACKGROUND_IMG,
   NOTE_IMG, REFEREE_IMG,
@@ -35,32 +33,6 @@ export class StadiumBuilder extends Builder {
     }
   }
 
-  static get ACTIONS() {
-    return {
-      FINISHED: 'FINISHED',
-    }
-  }
-
-  bindEvents() {
-    SocketIOClient.getInstance()
-      .onEvent(CLUE_FOUND, async () => {
-        if (this.state === 'EXPLORING') {
-          this.state = 'CLUE_FOUND';
-          await this.transition(StadiumBuilder.TRANSITIONS.FINISH_VR);
-          this._addClueOnTheStadium();
-          this.transition(StadiumBuilder.TRANSITIONS.CLUE_FOUND);
-        }
-      });
-    SocketIOClient.getInstance()
-      .onEvent(END_TALK, async () => {
-        if (this.state === 'CLUE_FOUND') {
-          await this.transition(StadiumBuilder.TRANSITIONS.SWIPE_LEFT);
-          this.emitAction(StadiumBuilder.ACTIONS.FINISHED);
-          this.state = 'DONE';
-        }
-      });
-  }
-
   draw() {
     this._drawInitialStadium();
     this.transition(StadiumBuilder.TRANSITIONS.START);
@@ -68,7 +40,6 @@ export class StadiumBuilder extends Builder {
 
   _drawInitialStadium() {
     this._background = new StaticImageWidget(0, 0, 1920, 1080, GAME_BACKGROUND_IMG);
-    this._background.domElem.addClass('background');
     this.rootElement.append(this._background.domElem);
     this._stadium = new ImageClicWidget(WINDOW_WIDTH / 2 - (715 / 2), WINDOW_HEIGHT / 2 - (1037 / 2), 715, 1037, STADIUM_IMG);
     this._stadium.domElem.addClass('popup');
@@ -87,6 +58,7 @@ export class StadiumBuilder extends Builder {
     });
 
     this._stadium.onClick = () => {
+      this._stadium.domElem.css('z-index', 1);
       // region Start explore stadium on VR
       if (this.state === 'START') {
         this.state = 'EXPLORING';
@@ -118,6 +90,7 @@ export class StadiumBuilder extends Builder {
   _addClueOnTheStadium() {
     this._clue = new ImageElementWidget(800, 380, 317, 298, 0, 1, NOTE_IMG);
     this._clue.domElem.css('z-index', ElementWidget.zIndexGlobal + 1);
+    this._clue.domElem.addClass('stadium-interactive');
     this._clue.domElem.hide();
     this._clue.addTo('#app');
     this._referee = new StaticImageWidget(1180, 450, 156, 234, REFEREE_IMG);
@@ -137,6 +110,7 @@ export class StadiumBuilder extends Builder {
   }
 
   async transition(transition) {
+    console.log(`Start transition : ${transition}`);
     switch (transition) {
       case StadiumBuilder.TRANSITIONS.START:
         return new Promise((resolve) => {
@@ -156,9 +130,11 @@ export class StadiumBuilder extends Builder {
         });
       case StadiumBuilder.TRANSITIONS.CLUE_FOUND:
         return new Promise((resolve) => {
+          this._addClueOnTheStadium();
           this._clue.domElem.fadeIn();
           this._referee.domElem.fadeIn();
           setTimeout(() => {
+            this._clue.domElem.removeClass('stadium-interactive');
             resolve();
           }, 400)
         });
@@ -176,6 +152,7 @@ export class StadiumBuilder extends Builder {
           this._clue.domElem.css('left', '150px');
           this._referee.domElem.css('left', '600px');
           setTimeout(() => {
+            this._clue.domElem.removeClass('stadium-interactive');
             resolve();
           }, 2000);
         });
@@ -186,8 +163,5 @@ export class StadiumBuilder extends Builder {
   }
 
   unbindEvents() {
-    SocketIOClient.getInstance()
-      .onEvent(CLUE_FOUND, () => {
-      });
   }
 }
