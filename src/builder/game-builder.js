@@ -7,15 +7,16 @@ import {
   CLUE_SHOES_ID, CLUE_SHOES_IMG,
   DEVICE_DISCONNECTED, END_TALK, EXCLAM_IMG, EXPLORE_PLACE, LOCKER_ROOM_ID, SCIENTIST_DROP_ZONE_NAME,
   AUDIO_2_IMG, AUDIO_3_IMG,
+  STADIUM_ID,
 } from '../SocketIOClient/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
-import {DragWidget} from '../widget/decorators/drag-n-drop/drag-widget';
+import { DragWidget } from '../widget/decorators/drag-n-drop/drag-widget';
 import Builder from './builder';
-import {DisconnectedDeviceBuilder} from './disconnected-device-builder';
-import {ExplorePlaceAsTabletBuilder} from './explore-place-as-tablet-builder';
-import {LockerRoomBuilder} from './locker-room-builder';
-import {StadiumBuilder} from './stadium-builder';
-import {AdidasBuilder} from './adidas-builder';
+import { DisconnectedDeviceBuilder } from './disconnected-device-builder';
+import { ExplorePlaceAsTabletBuilder } from './explore-place-as-tablet-builder';
+import { LockerRoomBuilder } from './locker-room-builder';
+import { StadiumBuilder } from './stadium-builder';
+import { AdidasBuilder } from './adidas-builder';
 import StaticImageWidget from '../widget/images/static-image-widget';
 
 export class GameBuilder extends Builder {
@@ -61,18 +62,22 @@ export class GameBuilder extends Builder {
             this._lockerRoom = new LockerRoomBuilder();
             this._lockerRoom.draw();
             this._lockerRoom.onAction(EXPLORE_PLACE, () => {
-              SocketIOClient.getInstance().sendEvent(EXPLORE_PLACE, {id: LOCKER_ROOM_ID})
+              SocketIOClient.getInstance()
+                .sendEvent(EXPLORE_PLACE, { id: LOCKER_ROOM_ID })
             })
           });
       });
 
     SocketIOClient.getInstance()
       .onEvent(EXPLORE_PLACE, (data) => {
+        if (data.id === STADIUM_ID) {
+          return;
+        }
         const replaceTabletBuilder = new ExplorePlaceAsTabletBuilder(parseInt(data.id, 0));
         replaceTabletBuilder.draw();
         replaceTabletBuilder.onAction(ExplorePlaceAsTabletBuilder.EXTERNAL_ACTION.CLUE_FOUND, (clue) => {
           SocketIOClient.getInstance()
-            .sendEvent(CLUE_FOUND, {clue_id: clue.clue_id});
+            .sendEvent(CLUE_FOUND, { clue_id: clue.clue_id });
           replaceTabletBuilder.destroy();
         });
       });
