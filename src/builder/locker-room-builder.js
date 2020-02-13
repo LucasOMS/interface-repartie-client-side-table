@@ -2,7 +2,7 @@ import $ from 'jquery/dist/jquery.min';
 import ElementWidget from 'tuiomanager/widgets/ElementWidget/ElementWidget';
 import ImageClicWidget from '../widget/images/image-clic-widget';
 import {
-  CLUE_FOUND,
+  CLUE_FOUND, EXPLORE_PLACE,
   LOCKER_ROOM_IMG,
   TAKE_TABLET_WHITE_IMG,
 } from '../SocketIOClient/constants';
@@ -32,6 +32,7 @@ export class LockerRoomBuilder extends Builder {
         this._waitingAction = new AnotherDeviceActionWidget(900, 100, 150, 310, TAKE_TABLET_WHITE_IMG);
         this._waitingAction.domElem.css('z-index', ElementWidget.zIndexGlobal + 1);
         this._waitingAction.addTo('#app');
+        this.emitAction(EXPLORE_PLACE)
       }
     }
   }

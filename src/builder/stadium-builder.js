@@ -1,19 +1,29 @@
 import $ from 'jquery/dist/jquery.min';
-import { WINDOW_HEIGHT, WINDOW_WIDTH } from 'tuiomanager/core/constants';
+import {
+  WINDOW_HEIGHT,
+  WINDOW_WIDTH,
+} from 'tuiomanager/core/constants';
 import ElementWidget from 'tuiomanager/widgets/ElementWidget/ElementWidget';
 import ImageElementWidget from 'tuiomanager/widgets/ElementWidget/ImageElementWidget/ImageElementWidget';
-import { AnotherDeviceActionWidget } from '../widget/another-device-action-widget';
+import {
+  AnotherDeviceActionWidget,
+} from '../widget/another-device-action-widget';
 import ImageClicWidget from '../widget/images/image-clic-widget';
 import StaticImageWidget from '../widget/images/static-image-widget';
 import {
   EXPLORE_PLACE,
   GAME_BACKGROUND_IMG,
-  NOTE_IMG, REFEREE_AFTER_IMG, REFEREE_IMG,
+  NOTE_IMG,
+  REFEREE_AFTER_IMG,
+  REFEREE_IMG,
+  STADIUM_ID,
   STADIUM_IMG,
   TAKE_VR_IMG,
 } from '../SocketIOClient/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
-import { StaticTextWidget } from '../widget/static-text-widget';
+import {
+  StaticTextWidget,
+} from '../widget/static-text-widget';
 import Builder from './builder';
 
 export class StadiumBuilder extends Builder {
@@ -64,7 +74,9 @@ export class StadiumBuilder extends Builder {
       if (this.state === 'START') {
         this.state = 'EXPLORING';
         SocketIOClient.getInstance()
-          .sendEvent(EXPLORE_PLACE);
+          .sendEvent(EXPLORE_PLACE, {
+            id: STADIUM_ID,
+          });
         this.transition(StadiumBuilder.TRANSITIONS.EXPLORING) // FadeOut text then show take_vr symbol
           .then(() => {
             this._waitingAction = new AnotherDeviceActionWidget(795, 172, 337.66, 620, TAKE_VR_IMG);
@@ -111,7 +123,7 @@ export class StadiumBuilder extends Builder {
   }
 
   async transition(transition) {
-    console.log(`Start transition : ${transition}`);
+    console.log(`Start transition : ${transition} `);
     switch (transition) {
       case StadiumBuilder.TRANSITIONS.START:
         return new Promise((resolve) => {
@@ -161,11 +173,8 @@ export class StadiumBuilder extends Builder {
           }, 2000);
         });
       default:
-        console.error(`Unknown transition : ${transition}`);
+        console.error(`Unknown transition : ${transition} `);
     }
     return Promise.resolve();
-  }
-
-  unbindEvents() {
   }
 }

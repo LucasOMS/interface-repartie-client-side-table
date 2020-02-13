@@ -5,16 +5,17 @@ import {
   CLUE_BALLON_IMG,
   CLUE_FOUND, CLUE_NOTE_ID,
   CLUE_SHOES_ID, CLUE_SHOES_IMG,
-  DEVICE_DISCONNECTED, END_TALK, EXPLORE_PLACE, SCIENTIST_DROP_ZONE_NAME,
+  DEVICE_DISCONNECTED, END_TALK, EXCLAM_IMG, EXPLORE_PLACE, LOCKER_ROOM_ID, SCIENTIST_DROP_ZONE_NAME,
 } from '../SocketIOClient/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
-import { DragWidget } from '../widget/decorators/drag-n-drop/drag-widget';
+import {DragWidget} from '../widget/decorators/drag-n-drop/drag-widget';
 import Builder from './builder';
-import { DisconnectedDeviceBuilder } from './disconnected-device-builder';
-import { ExplorePlaceAsTabletBuilder } from './explore-place-as-tablet-builder';
-import { LockerRoomBuilder } from './locker-room-builder';
-import { StadiumBuilder } from './stadium-builder';
-import { AdidasBuilder } from './adidas-builder';
+import {DisconnectedDeviceBuilder} from './disconnected-device-builder';
+import {ExplorePlaceAsTabletBuilder} from './explore-place-as-tablet-builder';
+import {LockerRoomBuilder} from './locker-room-builder';
+import {StadiumBuilder} from './stadium-builder';
+import {AdidasBuilder} from './adidas-builder';
+import StaticImageWidget from '../widget/images/static-image-widget';
 
 export class GameBuilder extends Builder {
   constructor() {
@@ -58,6 +59,9 @@ export class GameBuilder extends Builder {
           .then(() => {
             this._lockerRoom = new LockerRoomBuilder();
             this._lockerRoom.draw();
+            this._lockerRoom.onAction(EXPLORE_PLACE, () => {
+              SocketIOClient.getInstance().sendEvent(EXPLORE_PLACE, {id: LOCKER_ROOM_ID})
+            })
           });
       });
 
@@ -67,7 +71,7 @@ export class GameBuilder extends Builder {
         replaceTabletBuilder.draw();
         replaceTabletBuilder.onAction(ExplorePlaceAsTabletBuilder.EXTERNAL_ACTION.CLUE_FOUND, (clue) => {
           SocketIOClient.getInstance()
-            .sendEvent(CLUE_FOUND, { clue_id: clue.clue_id });
+            .sendEvent(CLUE_FOUND, {clue_id: clue.clue_id});
           replaceTabletBuilder.destroy();
         });
       });
@@ -88,7 +92,9 @@ export class GameBuilder extends Builder {
         this._clueBallWidget.addTo(this.rootElement);
         this._clueBallWidget.onDrop = (zone) => {
           if (zone === SCIENTIST_DROP_ZONE_NAME) {
-            // TODO Build answer dialog widget
+            this._exclam = new StaticImageWidget(1700, 500, 70, 285, EXCLAM_IMG);
+            this._exclam.domElem.addClass('popup');
+            this._exclam.addTo(this.rootElement);
             console.log('Show ball to scientist');
           }
         };
