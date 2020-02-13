@@ -9,6 +9,7 @@ export class BoundedImageWidget extends ImageElementWidget {
     this.canRotate(false, false);
     this.canZoom(false, false);
 
+    this.onClic = undefined;
     if (width < WINDOW_WIDTH || height < WINDOW_HEIGHT) {
       throw new Error('Don\'t use BoundedImageWidget with an image smaller than the viewport');
     }
@@ -38,5 +39,12 @@ export class BoundedImageWidget extends ImageElementWidget {
       newX = 0;
     }
     super.moveTo(newX, newY, angle);
+  }
+
+  onTouchCreation(tuioTouch) {
+    super.onTouchCreation(tuioTouch);
+    if (this.onClic && this.isTouched(tuioTouch.x, tuioTouch.y)) {
+      this.onClic(tuioTouch);
+    }
   }
 }

@@ -33,10 +33,10 @@ class DragNDropManager {
     return res;
 
     function collides(widget1, widget2) {
-      return !(widget2._x > (widget1._x + widget1.width)
-        || (widget2._x + widget2.width) < widget1._x
-        || widget2._y > (widget1._y + widget1.height)
-        || (widget2._y + widget2.height) < widget1._y)
+      return !(widget2.internX > (widget1.internX + widget1.width)
+        || (widget2.internX + widget2.width) < widget1.internX
+        || widget2.internY > (widget1.internY + widget1.height)
+        || (widget2.internY + widget2.height) < widget1.internY)
     }
   }
 

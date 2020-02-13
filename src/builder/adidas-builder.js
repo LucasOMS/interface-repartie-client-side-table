@@ -1,13 +1,14 @@
 import $ from 'jquery/dist/jquery.min';
-import ImageClicWidget from '../widget/images/image-clic-widget';
+import { WINDOW_WIDTH } from 'tuiomanager/core/constants';
+import ImageElementWidget from 'tuiomanager/widgets/ElementWidget/ImageElementWidget/ImageElementWidget';
 import {
-  CLUE_FOUND,
-  EXPERT_IMG,
   WAREHOUSE_IMG,
+  SCIENTIST_DROP_ZONE_NAME,
+  SCIENTIST_IMG,
 } from '../SocketIOClient/constants';
-import Builder from './builder';
-import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import StaticImageWidget from '../widget/images/static-image-widget';
+import { DropWidget } from '../widget/decorators/drag-n-drop/drop-widget';
+import Builder from './builder';
 
 export class AdidasBuilder extends Builder {
   constructor() {
@@ -17,6 +18,7 @@ export class AdidasBuilder extends Builder {
 
   static get TRANSITIONS() {
     return {
+      START: 'START',
       TALKING: 'TALKING',
       FINISHED_TALK: 'FINISHED_TALK',
     }
@@ -29,29 +31,34 @@ export class AdidasBuilder extends Builder {
   }
 
   draw() {
-    this.state = 'START';
     this._warehouse = new StaticImageWidget(1300, 250, 831, 1200, WAREHOUSE_IMG);
     this._warehouse.domElem.addClass('popup');
     this._warehouse.addTo(this.rootElement);
-    this._expert = new ImageClicWidget(900, 300, 944, 819, EXPERT_IMG);
-    this._expert.domElem.addClass('popup');
-    this._expert.addTo(this.rootElement);
-    this._expert.onClick = () => {
-      // region Start explore stadium on tablet
-      if (this.state === 'START') {
-        this.state = 'TALKING';
-      }
-    }
-  }
-
-  undraw() {
-    this._warehouse.domElem.remove();
-    this._expert.domElem.remove();
+    const scientistRatio = 762 / 1280;
+    const scientistWidth = 400;
+    this._scientistImage = new ImageElementWidget(WINDOW_WIDTH, 420, scientistWidth, scientistWidth / scientistRatio, 0, 1, SCIENTIST_IMG);
+    this._scientist = new DropWidget(SCIENTIST_DROP_ZONE_NAME, this._scientistImage);
+    this._scientist.addTo(this.rootElement);
+    this.transition(AdidasBuilder.TRANSITIONS.START);
   }
 
   unbindEvents() {
-    SocketIOClient.getInstance()
-      .onEvent(CLUE_FOUND, () => {
+  }
+
+  async transition(name) {
+    if (name === AdidasBuilder.TRANSITIONS.START) {
+      this._scientist.domElem.addClass('smooth-translate');
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          this._scientist.moveTo(1440, 420);
+          resolve();
+        }, 1000);
       });
+    }
+    return Promise.resolve();
+  }
+
+  undraw() {
+    this._scientist.domElem.remove();
   }
 }

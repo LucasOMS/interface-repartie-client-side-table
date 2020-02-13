@@ -20,12 +20,16 @@ export class DropWidget extends ElementWidget {
       .css('height', `${this.height}px`)
       .css('position', 'absolute')
       .css('z-index', `${this.zIndex}`)
-      .css('left', `${this.x}px`)
-      .css('top', `${this.y}px`)
+      .css('left', `${widget.internX}px`)
+      .css('top', `${widget.internY}px`)
       .css('transform', `rotate(${this._currentAngle}deg)`)
       .css('transform-origin', `scale(${this.scale})`)
       .append(widget.domElem);
 
+    widget.canZoom(false, false);
+    widget.canRotate(false, false);
+    widget.canMove(false, false);
+    widget.canDelete(false, false);
     this.canZoom(widget.canZoomTangible, widget.canZoomTactile);
     this.canRotate(widget.canRotateTangible, widget.canRotateTactile);
     this.canMove(widget.canMoveTangible, widget.canMoveTactile);
