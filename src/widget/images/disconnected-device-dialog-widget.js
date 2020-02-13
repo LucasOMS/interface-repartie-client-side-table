@@ -1,6 +1,6 @@
 import $ from 'jquery/dist/jquery.min';
 import ElementWidget from 'tuiomanager/widgets/ElementWidget/ElementWidget';
-import { TABLET_DISCONNECTED_IMG, VR_DISCONNECTED_IMG } from '../../SocketIOClient/constants';
+import {TABLET_DISCONNECTED_IMG, VR_DISCONNECTED_IMG} from '../../SocketIOClient/constants';
 
 
 export class DisconnectedDeviceDialogWidget extends ElementWidget {
@@ -16,6 +16,7 @@ export class DisconnectedDeviceDialogWidget extends ElementWidget {
       .attr('id', this.id)
       .css('width', `${width}px`)
       .css('height', `${height}px`)
+      .css('z-index', ElementWidget.zIndexGlobal + 1)
       .css('position', 'absolute')
       .css('left', `${x}px`)
       .css('top', `${y}px`);

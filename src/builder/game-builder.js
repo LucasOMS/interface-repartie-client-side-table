@@ -5,9 +5,8 @@ import {
   CLUE_BALLON_IMG,
   CLUE_FOUND, CLUE_NOTE_ID,
   CLUE_SHOES_ID, CLUE_SHOES_IMG,
-  DEVICE_DISCONNECTED, END_TALK, EXCLAM_IMG, EXPLORE_PLACE, LOCKER_ROOM_ID, SCIENTIST_DROP_ZONE_NAME,
-  AUDIO_2_IMG, AUDIO_3_IMG,
-  STADIUM_ID,
+  DEVICE_DISCONNECTED, END_TALK, EXCLAM_IMG, EXPLORE_PLACE, LOCKER_ROOM_ID, SCIENTIST_DROP_ZONE_NAME, AUDIO_3_IMG,
+  STADIUM_ID, AUDIO_2_IMG,
 } from '../SocketIOClient/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import { DragWidget } from '../widget/decorators/drag-n-drop/drag-widget';
