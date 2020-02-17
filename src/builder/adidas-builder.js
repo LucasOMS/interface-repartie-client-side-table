@@ -5,7 +5,7 @@ import {
   WAREHOUSE_IMG,
   SCIENTIST_DROP_ZONE_NAME,
   SCIENTIST_IMG, AUDIO_1_IMG,
-} from '../SocketIOClient/constants';
+} from '../utils/constants';
 import StaticImageWidget from '../widget/images/static-image-widget';
 import { DropWidget } from '../widget/decorators/drag-n-drop/drop-widget';
 import Builder from './builder';
@@ -31,12 +31,13 @@ export class AdidasBuilder extends Builder {
   }
 
   draw() {
-    this._warehouse = new StaticImageWidget(1300, 250, 831, 1200, WAREHOUSE_IMG);
+    this._warehouse = new StaticImageWidget(1380, 100, 630, 1200, WAREHOUSE_IMG);
     this._warehouse.domElem.addClass('popup');
     this._warehouse.addTo(this.rootElement);
     const scientistRatio = 762 / 1280;
     const scientistWidth = 400;
     this._scientistImage = new ImageElementWidget(WINDOW_WIDTH, 420, scientistWidth, scientistWidth / scientistRatio, 0, 1, SCIENTIST_IMG);
+    this._scientistImage.shouldGoOnTop = false;
     this._scientist = new DropWidget(SCIENTIST_DROP_ZONE_NAME, this._scientistImage);
     this._scientist.addTo(this.rootElement);
     this._audio = new Audio(AUDIO_1_IMG);
@@ -53,7 +54,7 @@ export class AdidasBuilder extends Builder {
       this._scientist.domElem.addClass('smooth-translate');
       return new Promise((resolve) => {
         setTimeout(() => {
-          this._scientist.moveTo(1440, 420);
+          this._scientist.moveTo(1250, 420);
           resolve();
         }, 1000);
       });

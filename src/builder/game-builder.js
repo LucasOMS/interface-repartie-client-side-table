@@ -7,7 +7,7 @@ import {
   CLUE_SHOES_ID, CLUE_SHOES_IMG,
   DEVICE_DISCONNECTED, END_TALK, EXCLAM_IMG, EXPLORE_PLACE, LOCKER_ROOM_ID, SCIENTIST_DROP_ZONE_NAME, AUDIO_3_IMG,
   STADIUM_ID, AUDIO_2_IMG,
-} from '../SocketIOClient/constants';
+} from '../utils/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import { DragWidget } from '../widget/decorators/drag-n-drop/drag-widget';
 import Builder from './builder';
@@ -97,7 +97,7 @@ export class GameBuilder extends Builder {
         this._clueBallWidget.addTo(this.rootElement);
         this._clueBallWidget.onDrop = (zone) => {
           if (zone === SCIENTIST_DROP_ZONE_NAME) {
-            this._exclam = new StaticImageWidget(1550, 200, 70, 285, EXCLAM_IMG);
+            this._exclam = new StaticImageWidget(1360, 200, 70, 285, EXCLAM_IMG);
             this._exclam.domElem.addClass('popup');
             this._exclam.addTo(this.rootElement);
             this._audio = new Audio(AUDIO_2_IMG);
@@ -120,7 +120,7 @@ export class GameBuilder extends Builder {
         this._shoeBallWidget.addTo(this.rootElement);
         this._shoeBallWidget.onDrop = (zone) => {
           if (zone === SCIENTIST_DROP_ZONE_NAME) {
-            this._exclam = new StaticImageWidget(1550, 200, 70, 285, EXCLAM_IMG);
+            this._exclam = new StaticImageWidget(1360, 200, 70, 285, EXCLAM_IMG);
             this._exclam.domElem.addClass('popup');
             this._exclam.addTo(this.rootElement);
             this._audio = new Audio(AUDIO_3_IMG);

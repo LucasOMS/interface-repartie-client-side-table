@@ -10,7 +10,7 @@ import {
   REVERSE_JOURNAL_IMG,
   REVERSE_SYMBOLS_IMG,
   SYMBOLS_IMG,
-} from '../SocketIOClient/constants';
+} from '../utils/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import Builder from './builder';
 

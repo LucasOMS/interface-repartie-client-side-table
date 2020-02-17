@@ -40,32 +40,11 @@ class ImageClicWidget extends ElementWidget {
     this.canZoom(false, false);
 
     this._initialZindex = this.zIndex;
-    this.shouldGoTop(true);
-  }
-
-  shouldGoTop(goTopOnClic) {
-    this._shouldGoTop = goTopOnClic;
-  }
-
-  onTouchCreation(tuioTouch) {
-    super.onTouchCreation(tuioTouch);
-    if (!this._shouldGoTop) {
-      this.domElem.css('z-index', this._initialZindex);
-    }
-  }
-
-  onTouchUpdate(tuioTouch) {
-    super.onTouchUpdate(tuioTouch);
-    if (!this._shouldGoTop) {
-      this.domElem.css('z-index', this._initialZindex);
-    }
+    this.shouldGoOnTop = false;
   }
 
   onTouchDeletion(tuioTouchId) {
     super.onTouchDeletion(tuioTouchId);
-    if (!this._shouldGoTop) {
-      this.domElem.css('z-index', this._initialZindex);
-    }
     const tuioTouch = this._lastTouchesValues[tuioTouchId];
     if (tuioTouch && document.elementFromPoint(tuioTouch.x, tuioTouch.y).id === this.id && this.onClick) {
       this.onClick(tuioTouch);

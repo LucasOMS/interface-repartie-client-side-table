@@ -6,8 +6,6 @@ export const DEVICE_DISCONNECTED = 'DEVICE_DISCONNECTED';
 export const EXPLORE_PLACE = 'EXPLORE_PLACE';
 export const CLUE_FOUND = 'CLUE_FOUND';
 export const END_TALK = 'END_TALK';
-export const SERVER_REST_ROOT_PATH = 'http://192.168.1.9:4444';
-export const SOCKET_ENDPOINT = 'http://192.168.1.9:10000/';
 export const TABLE_IMAGE_SRC_PATH = 'assets/table.png';
 export const TABLET_IMAGE_SRC_PATH = 'assets/tablet.png';
 export const VR_IMAGE_SRC_PATH = 'assets/vr.png';
@@ -24,7 +22,7 @@ export const NOTE_IMG = 'assets/note.png';
 export const REFEREE_IMG = 'assets/referee.png';
 export const REFEREE_AFTER_IMG = 'assets/referee_after.png';
 export const SOCCER_BALL_IMG = 'assets/soccer_ball.png';
-export const WAREHOUSE_IMG = 'assets/warehouse.png';
+export const WAREHOUSE_IMG = 'assets/building.svg';
 export const SOCCER_CLEATS_IMG = 'assets/soccer_cleats.png';
 export const SCIENTIST_IMG = 'assets/scientist.png';
 export const LOCKER_ROOM_IMG = 'assets/places/locker-room.svg';
@@ -48,3 +46,20 @@ export const CLUE_NOTE_ID = 1;
 export const CLUE_BALL_ID = 2;
 export const CLUE_SHOES_ID = 3;
 export const SCIENTIST_DROP_ZONE_NAME = 'SCIENTIST';
+
+// Utils
+export const PROFILES = {
+  LOCAL: 'LOCAL',
+  PROD: 'PROD',
+};
+
+// Network consts
+const NETWORK_PROFILES = {
+  LOCAL: 'LOCAL',
+  PROD: 'PROD',
+};
+const currentProfile = NETWORK_PROFILES.LOCAL; // Shorthand to change when deploying
+const NETWORK_PATH = 'http://192.168.1.9';
+const LOCAL_PATH = 'http://localhost';
+export const SERVER_REST_ROOT_PATH = `${currentProfile === NETWORK_PROFILES.LOCAL ? LOCAL_PATH : NETWORK_PATH}:4444`;
+export const SOCKET_ENDPOINT = `${currentProfile === NETWORK_PROFILES.LOCAL ? LOCAL_PATH : NETWORK_PATH}:10000/`;

@@ -4,7 +4,7 @@
 
 import io from 'socket.io-client'
 
-import { REGISTER_DEVICE, REGISTRATION_ASK } from './constants'
+import { REGISTER_DEVICE, REGISTRATION_ASK } from '../utils/constants'
 
 /**
  * Manage SocketIOClient singleton class.
