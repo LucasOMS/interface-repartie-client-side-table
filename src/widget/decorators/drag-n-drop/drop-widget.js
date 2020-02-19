@@ -25,7 +25,7 @@ export class DropWidget extends ElementWidget {
       .css('transform', `rotate(${this._currentAngle}deg)`)
       .css('transform-origin', `scale(${this.scale})`)
       .append(widget.domElem);
-
+    this.shouldGoOnTop = widget.shouldGoOnTop;
     widget.canZoom(false, false);
     widget.canRotate(false, false);
     widget.canMove(false, false);
@@ -34,7 +34,6 @@ export class DropWidget extends ElementWidget {
     this.canRotate(widget.canRotateTangible, widget.canRotateTactile);
     this.canMove(widget.canMoveTangible, widget.canMoveTactile);
     this.canDelete(widget.canDeleteTangible, widget.canDeleteTactile);
-
     this.dropzoneName = dropzoneName;
     DragNDropManager.getInstance()
       .addDropWidget(this);

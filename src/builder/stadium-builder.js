@@ -3,6 +3,7 @@ import {
   WINDOW_HEIGHT,
   WINDOW_WIDTH,
 } from 'tuiomanager/core/constants';
+import TUIOManager from 'tuiomanager/core/TUIOManager';
 import ElementWidget from 'tuiomanager/widgets/ElementWidget/ElementWidget';
 import ImageElementWidget from 'tuiomanager/widgets/ElementWidget/ImageElementWidget/ImageElementWidget';
 import {
@@ -19,7 +20,7 @@ import {
   STADIUM_ID,
   STADIUM_IMG,
   TAKE_VR_IMG,
-} from '../SocketIOClient/constants';
+} from '../utils/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import {
   StaticTextWidget,
@@ -53,7 +54,6 @@ export class StadiumBuilder extends Builder {
     this._background.domElem.css('z-index', -50);
     this.rootElement.append(this._background.domElem);
     this._stadium = new ImageClicWidget(WINDOW_WIDTH / 2 - (715 / 2), WINDOW_HEIGHT / 2 - (1037 / 2), 715, 1037, STADIUM_IMG);
-    this._stadium.shouldGoTop(false);
     this._stadium.domElem.addClass('popup');
     this._stadium.domElem.addClass('stadium-interactive');
     this.rootElement.append(this._stadium.domElem);
@@ -84,8 +84,8 @@ export class StadiumBuilder extends Builder {
             this._waitingAction.addTo('#app');
           });
       } else {
-        this._referee.domElem.css('z-index', ElementWidget.zIndexGlobal + 1);
-        this._clue.domElem.css('z-index', ElementWidget.zIndexGlobal + 1);
+        if (this._referee) this._referee.domElem.css('z-index', ElementWidget.zIndexGlobal + 1);
+        if (this._clue) this._clue.domElem.css('z-index', ElementWidget.zIndexGlobal + 1);
       }
       // endregion
     };
@@ -115,11 +115,23 @@ export class StadiumBuilder extends Builder {
 
   undraw() {
     this._background.domElem.remove();
-    this._text.domElem.remove();
-    this._textReverse.domElem.remove();
+
     this._clue.domElem.remove();
     this._referee.domElem.remove();
     this._stadium.domElem.remove();
+  }
+
+  undrawText() {
+    if (this._text) {
+      this._text.domElem.remove();
+      TUIOManager.getInstance()
+        .removeWidget(this._text);
+    }
+    if (this._textReverse) {
+      this._textReverse.domElem.remove();
+      TUIOManager.getInstance()
+        .removeWidget(this._textReverse);
+    }
   }
 
   async transition(transition) {
@@ -138,6 +150,7 @@ export class StadiumBuilder extends Builder {
           this._text.domElem.fadeOut();
           this._textReverse.domElem.fadeOut();
           setTimeout(() => {
+            this.undrawText();
             resolve();
           }, 400)
         });

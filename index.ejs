@@ -7,8 +7,24 @@
     <link rel="stylesheet" type="text/css" href="src/styles/reset.css">
     <link rel="stylesheet" type="text/css" href="src/styles/main.css">
     <title>TUIOAppStarter</title>
+    <style>
+        .fadeout {
+            animation: fadeout .3s forwards;
+            opacity: 1;
+        }
+
+        @keyframes fadeout {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
+
 <div id="app">
 </div>
 </body>

@@ -5,7 +5,7 @@ import {
   CLUE_FOUND, EXPLORE_PLACE,
   LOCKER_ROOM_IMG,
   TAKE_TABLET_WHITE_IMG,
-} from '../SocketIOClient/constants';
+} from '../utils/constants';
 import Builder from './builder';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import { AnotherDeviceActionWidget } from '../widget/another-device-action-widget';
@@ -23,7 +23,6 @@ export class LockerRoomBuilder extends Builder {
   draw() {
     this._lockerRoomWidget = new ImageClicWidget(767, 21.5, 406, 504, LOCKER_ROOM_IMG);
     this._lockerRoomWidget.domElem.addClass('popup');
-    this._lockerRoomWidget.shouldGoTop(false);
     this._lockerRoomWidget.addTo(this.rootElement);
     this._lockerRoomWidget.onClick = () => {
       // region Start explore stadium on tablet
@@ -38,7 +37,9 @@ export class LockerRoomBuilder extends Builder {
   }
 
   removeWaiting() {
-    this._waitingAction.domElem.remove();
+    if (this._waitingAction) {
+      this._waitingAction.domElem.remove();
+    }
   }
 
   undraw() {

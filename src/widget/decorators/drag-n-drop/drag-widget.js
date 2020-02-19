@@ -1,4 +1,5 @@
 import $ from 'jquery/dist/jquery.min';
+import TUIOManager from 'tuiomanager/core/TUIOManager';
 import ElementWidget from 'tuiomanager/widgets/ElementWidget/ElementWidget';
 import DragNDropManager from './drag-n-drop-manager';
 
@@ -10,6 +11,8 @@ export class DragWidget extends ElementWidget {
   constructor(widget) {
     super(widget.internX, widget.internY, widget.internWidth, widget.internHeight, widget._currentAngle, widget.scale);
     // Remove position of wrapped widget
+    TUIOManager.getInstance()
+      .removeWidget(widget);
     widget.domElem.css('position', 'initial')
       .css('height', '100%')
       .css('width', '100%')

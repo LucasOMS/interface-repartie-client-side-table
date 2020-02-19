@@ -1,7 +1,7 @@
 import $ from 'jquery/dist/jquery.min';
 import { WINDOW_HEIGHT, WINDOW_WIDTH } from 'tuiomanager/core/constants';
 import { DisconnectedDeviceDialogWidget } from '../widget/images/disconnected-device-dialog-widget';
-import { DEVICE_CONNECTED } from '../SocketIOClient/constants';
+import { DEVICE_CONNECTED } from '../utils/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import Builder from './builder';
 

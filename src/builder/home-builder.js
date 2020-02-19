@@ -7,7 +7,7 @@ import {
   TABLE_IMAGE_SRC_PATH,
   TABLET_IMAGE_SRC_PATH,
   VR_IMAGE_SRC_PATH,
-} from '../SocketIOClient/constants';
+} from '../utils/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import ImageClicWidget from '../widget/images/image-clic-widget';
 import StaticImageWidget from '../widget/images/static-image-widget';

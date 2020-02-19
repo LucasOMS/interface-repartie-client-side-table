@@ -5,7 +5,7 @@ import {
   LOCKER_ROOM_IMG,
   LOCKER_ROOM_LOCKERS_ID,
   LOCKER_ROOM_LOCKERS_IMG,
-} from '../SocketIOClient/constants';
+} from '../utils/constants';
 import { BoundedImageWidget } from '../widget/images/bounded-image-widget';
 import Builder from './builder';
 
