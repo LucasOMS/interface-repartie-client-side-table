@@ -1,7 +1,6 @@
 import $ from 'jquery/dist/jquery.min';
 import {
   WINDOW_HEIGHT,
-  WINDOW_WIDTH,
 } from 'tuiomanager/core/constants';
 import TUIOManager from 'tuiomanager/core/TUIOManager';
 import ElementWidget from 'tuiomanager/widgets/ElementWidget/ElementWidget';
@@ -12,13 +11,14 @@ import {
 import ImageClicWidget from '../widget/images/image-clic-widget';
 import StaticImageWidget from '../widget/images/static-image-widget';
 import {
+  AUDIO_1,
   EXPLORE_PLACE,
   GAME_BACKGROUND_IMG,
   NOTE_IMG,
   REFEREE_AFTER_IMG,
   REFEREE_IMG,
   STADIUM_ID,
-  STADIUM_IMG,
+  STADIUM_IMG, SUPPORTER_IMG,
   TAKE_VR_IMG,
 } from '../utils/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
@@ -53,17 +53,22 @@ export class StadiumBuilder extends Builder {
     this._background = new StaticImageWidget(0, 0, 1920, 1080, GAME_BACKGROUND_IMG);
     this._background.domElem.css('z-index', -50);
     this.rootElement.append(this._background.domElem);
-    this._stadium = new ImageClicWidget(WINDOW_WIDTH / 2 - (715 / 2), WINDOW_HEIGHT / 2 - (1037 / 2), 715, 1037, STADIUM_IMG);
+    this._supporter = new StaticImageWidget(735, 600, 512, 512, SUPPORTER_IMG);
+    this.rootElement.append(this._supporter.domElem);
+    // audio 1 supporter
+    this._audio = new Audio(AUDIO_1);
+    this._audio.autoplay = true;
+    this._audio.play();
+    this._stadium = new ImageClicWidget(15, WINDOW_HEIGHT / 2 - (1037 / 2), 715, 1037, STADIUM_IMG);
     this._stadium.domElem.addClass('popup');
-    this._stadium.domElem.addClass('stadium-interactive');
     this.rootElement.append(this._stadium.domElem);
 
-    this._text = new StaticTextWidget('TOUCHER POUR EXPLORER', 763, 700, 400, 100, 0, 1, {
+    this._text = new StaticTextWidget('TOUCHER POUR EXPLORER', 160, 700, 400, 100, 0, 1, {
       fontSize: 68,
       textAlign: 'center',
       fontWeight: 'bold',
     });
-    this._textReverse = new StaticTextWidget('TOUCHER POUR EXPLORER', 763, 177, 400, 100, 180, 1, {
+    this._textReverse = new StaticTextWidget('TOUCHER POUR EXPLORER', 160, 177, 400, 100, 180, 1, {
       fontSize: 68,
       textAlign: 'center',
       fontWeight: 'bold',
@@ -79,7 +84,7 @@ export class StadiumBuilder extends Builder {
           });
         this.transition(StadiumBuilder.TRANSITIONS.EXPLORING) // FadeOut text then show take_vr symbol
           .then(() => {
-            this._waitingAction = new AnotherDeviceActionWidget(795, 172, 337.66, 620, TAKE_VR_IMG);
+            this._waitingAction = new AnotherDeviceActionWidget(190, 172, 337.66, 620, TAKE_VR_IMG);
             this._waitingAction.domElem.css('z-index', ElementWidget.zIndexGlobal + 1);
             this._waitingAction.addTo('#app');
           });
@@ -102,20 +107,18 @@ export class StadiumBuilder extends Builder {
   }
 
   _addClueOnTheStadium() {
-    this._clue = new ImageElementWidget(800, 380, 317, 298, 0, 1, NOTE_IMG);
-    this._clue.domElem.addClass('stadium-interactive');
+    this._clue = new ImageElementWidget(50, 380, 317, 298, 0, 1, NOTE_IMG);
     this._clue.domElem.hide();
     this._clue.addTo(this.rootElement);
-    this._referee = new StaticImageWidget(1180, 450, 156, 234, REFEREE_IMG);
+    this._referee = new StaticImageWidget(600, 430, 156, 234, REFEREE_IMG);
     this._referee.domElem.css('z-index', ElementWidget.zIndexGlobal + 1);
-    this._referee.domElem.addClass('stadium-interactive');
     this._referee.domElem.hide();
     this._referee.addTo('#app');
   }
 
   undraw() {
     this._background.domElem.remove();
-
+    this._supporter.domElem.remove();
     this._clue.domElem.remove();
     this._referee.domElem.remove();
     this._stadium.domElem.remove();
@@ -160,7 +163,6 @@ export class StadiumBuilder extends Builder {
           this._clue.domElem.fadeIn();
           this._referee.domElem.fadeIn();
           setTimeout(() => {
-            this._clue.domElem.removeClass('stadium-interactive');
             resolve();
           }, 400)
         });
@@ -173,15 +175,10 @@ export class StadiumBuilder extends Builder {
         });
       case StadiumBuilder.TRANSITIONS.SWIPE_LEFT:
         return new Promise((resolve) => {
-          this._clue.domElem.addClass('stadium-interactive');
-          this._stadium.moveTo(25, this._stadium.domElem.position().top);
-          this._clue.moveTo(150, this._clue.domElem.position().top);
-          this._referee.domElem.css('left', '600px');
           this._referee.domElem.attr('src', REFEREE_AFTER_IMG);
           this._referee.domElem.css('width', '156px');
           this._referee.domElem.css('height', '154px');
           setTimeout(() => {
-            this._clue.domElem.removeClass('stadium-interactive');
             resolve();
           }, 2000);
         });

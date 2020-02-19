@@ -42,12 +42,14 @@ export class GameBuilder extends Builder {
       .onEvent(CLUE_FOUND, async (data) => {
         const clueId = parseInt(data.clue_id, 0);
         if (clueId === CLUE_NOTE_ID && !this._noteFound) {
+          // audio 2 supporter
           this._noteFound = true;
           await this._stadium.transition(StadiumBuilder.TRANSITIONS.FINISH_VR);
           await this._stadium.transition(StadiumBuilder.TRANSITIONS.CLUE_FOUND);
         } else {
           this._addClue(clueId);
           if (clueId === CLUE_SHOES_ID) {
+            // audio 4 supporter
             this._adidas = new AdidasBuilder();
             this._adidas.bindEvents();
             this._adidas.draw();
@@ -58,6 +60,7 @@ export class GameBuilder extends Builder {
       .onEvent(END_TALK, async () => {
         await this._stadium.transition(StadiumBuilder.TRANSITIONS.SWIPE_LEFT)
           .then(() => {
+            // audio 3 supporter
             this._lockerRoom = new LockerRoomBuilder();
             this._lockerRoom.draw();
             this._lockerRoom.onAction(EXPLORE_PLACE, () => {
