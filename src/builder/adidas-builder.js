@@ -4,7 +4,7 @@ import ImageElementWidget from 'tuiomanager/widgets/ElementWidget/ImageElementWi
 import {
   WAREHOUSE_IMG,
   SCIENTIST_DROP_ZONE_NAME,
-  SCIENTIST_IMG, AUDIO_1_IMG,
+  SCIENTIST_IMG, AUDIO_1,
 } from '../utils/constants';
 import StaticImageWidget from '../widget/images/static-image-widget';
 import { DropWidget } from '../widget/decorators/drag-n-drop/drop-widget';
@@ -40,7 +40,7 @@ export class AdidasBuilder extends Builder {
     this._scientistImage.shouldGoOnTop = false;
     this._scientist = new DropWidget(SCIENTIST_DROP_ZONE_NAME, this._scientistImage);
     this._scientist.addTo(this.rootElement);
-    this._audio = new Audio(AUDIO_1_IMG);
+    this._audio = new Audio(AUDIO_1);
     this._audio.autoplay = true;
     this._audio.play();
     this.transition(AdidasBuilder.TRANSITIONS.START);
