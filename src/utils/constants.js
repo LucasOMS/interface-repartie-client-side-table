@@ -39,6 +39,12 @@ export const SUPPORTER_IMG = 'assets/supporter.png';
 export const DIALOG_BALL_IMG = 'assets/dialogs/expert_on_ball.png';
 export const DIALOG_SHOES_IMG = 'assets/dialogs/expert_on_shoes.png';
 export const DIALOG_EXPERT_IMG = 'assets/dialogs/expert_beginning.png';
+export const DIALOG_SUPPORTER_1_IMG = 'assets/dialogs/supporter1.png';
+export const DIALOG_SUPPORTER_2_IMG = 'assets/dialogs/supporter2.png';
+export const DIALOG_SUPPORTER_3_IMG = 'assets/dialogs/supporter3.png';
+export const DIALOG_SUPPORTER_4_IMG = 'assets/dialogs/supporter4.png';
+export const DIALOG_SUPPORTER_5_IMG = 'assets/dialogs/supporter5.png';
+export const DIALOG_SUPPORTER_6_IMG = 'assets/dialogs/supporter6.png';
 /* audios */
 export const AUDIO_1 = 'assets/sounds/vocal1.mp3';
 export const AUDIO_2 = 'assets/sounds/vocal2.mp3';

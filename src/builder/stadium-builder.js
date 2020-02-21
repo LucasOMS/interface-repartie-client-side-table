@@ -11,14 +11,13 @@ import {
 import ImageClicWidget from '../widget/images/image-clic-widget';
 import StaticImageWidget from '../widget/images/static-image-widget';
 import {
-  AUDIO_1,
   EXPLORE_PLACE,
   GAME_BACKGROUND_IMG,
   NOTE_IMG,
   REFEREE_AFTER_IMG,
   REFEREE_IMG,
   STADIUM_ID,
-  STADIUM_IMG, SUPPORTER_IMG,
+  STADIUM_IMG,
   TAKE_VR_IMG,
 } from '../utils/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
@@ -53,12 +52,6 @@ export class StadiumBuilder extends Builder {
     this._background = new StaticImageWidget(0, 0, 1920, 1080, GAME_BACKGROUND_IMG);
     this._background.domElem.css('z-index', -50);
     this.rootElement.append(this._background.domElem);
-    this._supporter = new StaticImageWidget(735, 600, 512, 512, SUPPORTER_IMG);
-    this.rootElement.append(this._supporter.domElem);
-    // audio 1 supporter
-    this._audio = new Audio(AUDIO_1);
-    this._audio.autoplay = true;
-    this._audio.play();
     this._stadium = new ImageClicWidget(15, WINDOW_HEIGHT / 2 - (1037 / 2), 715, 1037, STADIUM_IMG);
     this._stadium.domElem.addClass('popup');
     this.rootElement.append(this._stadium.domElem);

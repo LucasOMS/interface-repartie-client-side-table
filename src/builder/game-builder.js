@@ -5,8 +5,8 @@ import {
   CLUE_BALLON_IMG,
   CLUE_FOUND, CLUE_NOTE_ID,
   CLUE_SHOES_ID, CLUE_SHOES_IMG,
-  DEVICE_DISCONNECTED, END_TALK, EXCLAM_IMG, EXPLORE_PLACE, LOCKER_ROOM_ID, SCIENTIST_DROP_ZONE_NAME, AUDIO_3,
-  STADIUM_ID, AUDIO_2,
+  DEVICE_DISCONNECTED, END_TALK, EXPLORE_PLACE, LOCKER_ROOM_ID, SCIENTIST_DROP_ZONE_NAME,
+  STADIUM_ID,
 } from '../utils/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import { DragWidget } from '../widget/decorators/drag-n-drop/drag-widget';
@@ -16,13 +16,14 @@ import { ExplorePlaceAsTabletBuilder } from './explore-place-as-tablet-builder';
 import { LockerRoomBuilder } from './locker-room-builder';
 import { StadiumBuilder } from './stadium-builder';
 import { AdidasBuilder } from './adidas-builder';
-import StaticImageWidget from '../widget/images/static-image-widget';
+import {SupporterBuilder} from './supporter';
 
 export class GameBuilder extends Builder {
   constructor() {
     super();
     this.rootElement = $('#app');
     this._stadium = new StadiumBuilder();
+    this._supporter = new SupporterBuilder();
   }
 
   bindEvents() {
@@ -42,14 +43,15 @@ export class GameBuilder extends Builder {
       .onEvent(CLUE_FOUND, async (data) => {
         const clueId = parseInt(data.clue_id, 0);
         if (clueId === CLUE_NOTE_ID && !this._noteFound) {
-          // audio 2 supporter
           this._noteFound = true;
+          await this._supporter.transition(SupporterBuilder.TRANSITIONS.START_TALK2);
           await this._stadium.transition(StadiumBuilder.TRANSITIONS.FINISH_VR);
           await this._stadium.transition(StadiumBuilder.TRANSITIONS.CLUE_FOUND);
         } else {
           this._addClue(clueId);
           if (clueId === CLUE_SHOES_ID) {
-            // audio 4 supporter
+            await this._supporter.transition(SupporterBuilder.TRANSITIONS.START_TALK4);
+            // await this._supporter.transition(SupporterBuilder.TRANSITIONS.FINISH_TALK4);
             this._adidas = new AdidasBuilder();
             this._adidas.bindEvents();
             this._adidas.draw();
@@ -58,9 +60,9 @@ export class GameBuilder extends Builder {
       });
     SocketIOClient.getInstance()
       .onEvent(END_TALK, async () => {
+        await this._supporter.transition(SupporterBuilder.TRANSITIONS.START_TALK3);
         await this._stadium.transition(StadiumBuilder.TRANSITIONS.SWIPE_LEFT)
           .then(() => {
-            // audio 3 supporter
             this._lockerRoom = new LockerRoomBuilder();
             this._lockerRoom.draw();
             this._lockerRoom.onAction(EXPLORE_PLACE, () => {
@@ -98,14 +100,9 @@ export class GameBuilder extends Builder {
         );
         this._clueBallWidget.domElem.addClass('popup');
         this._clueBallWidget.addTo(this.rootElement);
-        this._clueBallWidget.onDrop = (zone) => {
+        this._clueBallWidget.onDrop = async (zone) => {
           if (zone === SCIENTIST_DROP_ZONE_NAME) {
-            this._exclam = new StaticImageWidget(1360, 200, 70, 285, EXCLAM_IMG);
-            this._exclam.domElem.addClass('popup');
-            this._exclam.addTo(this.rootElement);
-            this._audio = new Audio(AUDIO_2);
-            this._audio.autoplay = true;
-            this._audio.play();
+            await this._adidas.transition(AdidasBuilder.TRANSITIONS.START_TALK_BALL);
             console.log('Show ball to scientist');
           }
         };
@@ -121,14 +118,9 @@ export class GameBuilder extends Builder {
         );
         this._shoeBallWidget.domElem.addClass('popup');
         this._shoeBallWidget.addTo(this.rootElement);
-        this._shoeBallWidget.onDrop = (zone) => {
+        this._shoeBallWidget.onDrop = async (zone) => {
           if (zone === SCIENTIST_DROP_ZONE_NAME) {
-            this._exclam = new StaticImageWidget(1360, 200, 70, 285, EXCLAM_IMG);
-            this._exclam.domElem.addClass('popup');
-            this._exclam.addTo(this.rootElement);
-            this._audio = new Audio(AUDIO_3);
-            this._audio.autoplay = true;
-            this._audio.play();
+            await this._adidas.transition(AdidasBuilder.TRANSITIONS.START_TALK_SHOES);
             console.log('Show shoes to scientist');
           }
         };
@@ -139,6 +131,7 @@ export class GameBuilder extends Builder {
   }
 
   draw() {
+    this._supporter.draw();
     this._stadium.draw();
   }
 
