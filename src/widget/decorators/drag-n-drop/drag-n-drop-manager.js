@@ -41,7 +41,6 @@ class DragNDropManager {
   }
 
   addDropWidget(widget) {
-    console.log('Add drop zone : ', widget);
     this._dropWidgets.push(widget);
   }
 }

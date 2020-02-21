@@ -31,8 +31,13 @@ export class SupporterBuilder extends Builder {
 
   draw() {
     this._supporter = new StaticImageWidget(735, 600, 512, 580, SUPPORTER_IMG);
-    this.rootElement.append(this._supporter.domElem);
+    this._supporter.addTo('#app');
     this.transition(SupporterBuilder.TRANSITIONS.START_TALK1);
+  }
+
+  undraw() {
+    if (this._supporter) this._supporter.domElem.remove();
+    if (this._dialog) this._dialog.domElem.remove();
   }
 
   async transition(transition) {
@@ -45,7 +50,7 @@ export class SupporterBuilder extends Builder {
             this._audio.autoplay = true;
             this._audio.play();
             this._dialog = new ImageElementWidget(1130, 650, 779, 196, 0, 1, DIALOG_SUPPORTER_1_IMG);
-            this.rootElement.append(this._dialog.domElem);
+            this._dialog.addTo(this.rootElement);
             resolve();
           }, 1000)
         });
@@ -57,7 +62,7 @@ export class SupporterBuilder extends Builder {
             this._audio.autoplay = true;
             this._audio.play();
             this._dialog = new ImageElementWidget(1130, 650, 779, 123, 0, 1, DIALOG_SUPPORTER_2_IMG);
-            this.rootElement.append(this._dialog.domElem);
+            this._dialog.addTo(this.rootElement);
             resolve();
           }, 1000)
         });
@@ -69,7 +74,7 @@ export class SupporterBuilder extends Builder {
             this._audio.autoplay = true;
             this._audio.play();
             this._dialog = new ImageElementWidget(1130, 650, 779, 166, 0, 1, DIALOG_SUPPORTER_3_IMG);
-            this.rootElement.append(this._dialog.domElem);
+            this._dialog.addTo(this.rootElement);
             resolve();
           }, 1000)
         });
@@ -81,7 +86,7 @@ export class SupporterBuilder extends Builder {
             this._audio.autoplay = true;
             this._audio.play();
             this._dialog = new ImageElementWidget(50, 800, 774, 188, 0, 1, DIALOG_SUPPORTER_4_IMG);
-            this.rootElement.append(this._dialog.domElem);
+            this._dialog.addTo(this.rootElement);
             resolve();
           }, 3000)
         });
@@ -99,7 +104,7 @@ export class SupporterBuilder extends Builder {
             this._audio.autoplay = true;
             this._audio.play();
             this._dialog = new ImageElementWidget(50, 800, 774, 188, 0, 1, DIALOG_SUPPORTER_5_IMG);
-            this.rootElement.append(this._dialog.domElem);
+            this._dialog.addTo(this.rootElement);
             resolve();
           }, 3000)
         });

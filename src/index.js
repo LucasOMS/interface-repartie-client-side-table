@@ -28,14 +28,12 @@ const buildApp = (profile) => {
   homeBuilder.bindEvents();
   homeBuilder.draw();
   homeBuilder.onAction(HomeExternalAction.START_PLAY, () => {
-    console.log('Start play');
     homeBuilder.destroy();
 
     const ghb = new GameHomeBuilder();
     ghb.bindEvents();
     ghb.draw();
     ghb.onAction(GameHomeExternalAction.LAUNCH_GAME, () => {
-      console.log('Launch Game');
       ghb.destroy();
 
       const gameBuilder = new GameBuilder();
