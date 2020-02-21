@@ -8,33 +8,36 @@ export const CLUE_FOUND = 'CLUE_FOUND';
 export const END_TALK = 'END_TALK';
 export const END_GAME = 'END_GAME';
 /* devices icons */
-export const TABLE_IMAGE_SRC_PATH = 'assets/table.png';
-export const TABLET_IMAGE_SRC_PATH = 'assets/tablet.png';
-export const VR_IMAGE_SRC_PATH = 'assets/vr.png';
-/* game home */
-export const PLAY_IMAGE_SRC_PATH = 'assets/play.png';
-export const HOME_BACKGROUND_IMG = 'assets/home-background.png';
-export const JOURNAL_IMG = 'assets/journal.png';
-export const REVERSE_JOURNAL_IMG = 'assets/journal-reverse.png';
-export const SYMBOLS_IMG = 'assets/symbols.png';
-export const REVERSE_SYMBOLS_IMG = 'assets/symbols-reverse.png';
-export const LAUNCH_BUTTON_IMG = 'assets/launch-button.png';
-/* game */
-export const GAME_BACKGROUND_IMG = 'assets/game-background.png';
-export const STADIUM_IMG = 'assets/stadium.png';
-export const NOTE_IMG = 'assets/note.png';
-export const REFEREE_IMG = 'assets/referee.png';
-export const REFEREE_AFTER_IMG = 'assets/referee_after.png';
-export const REFEREE_END_IMG = 'assets/referee_end.png';
-export const WAREHOUSE_IMG = 'assets/building.svg';
-export const SCIENTIST_IMG = 'assets/scientist.png';
-export const LOCKER_ROOM_IMG = 'assets/places/locker-room.svg';
-export const LOCKER_ROOM_LOCKERS_IMG = 'assets/places/locker-room-lockers.svg';
+export const TABLE_IMAGE_SRC_PATH = 'assets/devices/table.png';
+export const TABLET_IMAGE_SRC_PATH = 'assets/devices/tablet.png';
+export const VR_IMAGE_SRC_PATH = 'assets/devices/vr.png';
+/* utils */
+export const HOME_BACKGROUND_IMG = 'assets/utils/home-background.png';
+export const GAME_BACKGROUND_IMG = 'assets/utils/game-background.png';
+export const JOURNAL_IMG = 'assets/utils/journal.png';
+export const REVERSE_JOURNAL_IMG = 'assets/utils/journal-reverse.png';
+export const SYMBOLS_IMG = 'assets/utils/symbols.png';
+export const REVERSE_SYMBOLS_IMG = 'assets/utils/symbols-reverse.png';
+export const EXCLAM_IMG = 'assets/utils/exclam.png';
+export const QUESTION_IMG = 'assets/utils/question.png';
+/* buttons */
+export const PLAY_IMAGE_SRC_PATH = 'assets/buttons/play.png';
+export const LAUNCH_BUTTON_IMG = 'assets/buttons/launch-button.png';
+/* clues */
+export const NOTE_IMG = 'assets/clues/note.png';
 export const CLUE_BALLON_IMG = 'assets/clues/ballon.png';
 export const CLUE_SHOES_IMG = 'assets/clues/shoe.svg';
-export const EXCLAM_IMG = 'assets/exclam.png';
-export const QUESTION_IMG = 'assets/question.png';
-export const SUPPORTER_IMG = 'assets/supporter.png';
+/* places */
+export const STADIUM_IMG = 'assets/places/stadium.png';
+export const WAREHOUSE_IMG = 'assets/places/building.svg';
+export const LOCKER_ROOM_IMG = 'assets/places/locker-room.svg';
+export const LOCKER_ROOM_LOCKERS_IMG = 'assets/places/locker-room-lockers.svg';
+/* characters */
+export const SUPPORTER_IMG = 'assets/characters/supporter.svg';
+export const SCIENTIST_IMG = 'assets/characters/scientist.png';
+export const REFEREE_IMG = 'assets/characters/referee.png';
+export const REFEREE_AFTER_IMG = 'assets/characters/referee_after.png';
+export const REFEREE_END_IMG = 'assets/characters/referee_end.png';
 /* dialogs */
 export const DIALOG_BALL_IMG = 'assets/dialogs/expert_on_ball.png';
 export const DIALOG_SHOES_IMG = 'assets/dialogs/expert_on_shoes.png';
@@ -44,8 +47,8 @@ export const AUDIO_1 = 'assets/sounds/vocal1.mp3';
 export const AUDIO_2 = 'assets/sounds/vocal2.mp3';
 export const AUDIO_3 = 'assets/sounds/vocal3.mp3';
 /* disconnect */
-export const VR_DISCONNECTED_IMG = 'assets/vr_disconnected.png';
-export const TABLET_DISCONNECTED_IMG = 'assets/tablet_disconnected.png';
+export const VR_DISCONNECTED_IMG = 'assets/devices/disconnected/vr_disconnected.png';
+export const TABLET_DISCONNECTED_IMG = 'assets/devices/disconnected/tablet_disconnected.png';
 /* instructions */
 export const TAKE_VR_IMG = 'assets/devices/take_vr.png';
 export const TAKE_TABLET_IMG = 'assets/devices/take_tablet.png';
