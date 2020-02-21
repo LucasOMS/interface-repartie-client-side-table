@@ -10,8 +10,10 @@ import {
 } from '../utils/constants';
 import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import { DragWidget } from '../widget/decorators/drag-n-drop/drag-widget';
+import { TagDetector } from '../widget/tag-detector';
 import Builder from './builder';
 import { DisconnectedDeviceBuilder } from './disconnected-device-builder';
+import { EndGameBuilder } from './end-game-builder';
 import { ExplorePlaceAsTabletBuilder } from './explore-place-as-tablet-builder';
 import { LockerRoomBuilder } from './locker-room-builder';
 import { StadiumBuilder } from './stadium-builder';
@@ -24,6 +26,13 @@ export class GameBuilder extends Builder {
     this.rootElement = $('#app');
     this._stadium = new StadiumBuilder();
     this._supporter = new SupporterBuilder();
+    const test = new TagDetector();
+    test.onTag = (tag) => {
+      console.log(tag);
+      this._endGameBuilder = new EndGameBuilder();
+      this._endGameBuilder.bindEvents();
+      this._endGameBuilder.draw();
+    }
   }
 
   bindEvents() {

@@ -1,10 +1,13 @@
 import $ from 'jquery/dist/jquery.min';
 import ImageElementWidget from 'tuiomanager/widgets/ElementWidget/ImageElementWidget/ImageElementWidget';
-import StaticImageWidget from '../widget/images/static-image-widget';
 import {
-  CLUE_BALLON_IMG, CLUE_SHOES_IMG,
-  GAME_BACKGROUND_IMG, QUESTION_IMG, REFEREE_END_IMG,
-} from '../SocketIOClient/constants';
+  CLUE_BALLON_IMG,
+  CLUE_SHOES_IMG,
+  GAME_BACKGROUND_IMG,
+  QUESTION_IMG,
+  REFEREE_END_IMG,
+} from '../utils/constants';
+import StaticImageWidget from '../widget/images/static-image-widget';
 import Builder from './builder';
 import ImageClicWidget from '../widget/images/image-clic-widget';
 
