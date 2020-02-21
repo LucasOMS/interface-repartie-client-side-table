@@ -30,7 +30,7 @@ export class SupporterBuilder extends Builder {
   }
 
   draw() {
-    this._supporter = new StaticImageWidget(735, 600, 512, 512, SUPPORTER_IMG);
+    this._supporter = new StaticImageWidget(735, 600, 512, 580, SUPPORTER_IMG);
     this.rootElement.append(this._supporter.domElem);
     this.transition(SupporterBuilder.TRANSITIONS.START_TALK1);
   }

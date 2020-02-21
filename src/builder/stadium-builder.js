@@ -169,6 +169,7 @@ export class StadiumBuilder extends Builder {
       case StadiumBuilder.TRANSITIONS.SWIPE_LEFT:
         return new Promise((resolve) => {
           this._referee.domElem.attr('src', REFEREE_AFTER_IMG);
+          this._referee.domElem.css('top', '480px');
           this._referee.domElem.css('width', '156px');
           this._referee.domElem.css('height', '154px');
           setTimeout(() => {

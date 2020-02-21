@@ -59,10 +59,8 @@ export class LockerRoomBuilder extends Builder {
     this._lockerRoomWidget.onClick = () => {
       // region Start explore stadium on tablet
       if (this.state === 'START') {
+        this.transition(LockerRoomBuilder.TRANSITIONS.EXPLORING);
         this.state = 'EXPLORING';
-        this._waitingAction = new AnotherDeviceActionWidget(900, 100, 150, 310, TAKE_TABLET_WHITE_IMG);
-        this._waitingAction.domElem.css('z-index', ElementWidget.zIndexGlobal + 1);
-        this._waitingAction.addTo('#app');
         this.emitAction(EXPLORE_PLACE)
       }
     }
@@ -84,6 +82,9 @@ export class LockerRoomBuilder extends Builder {
           setTimeout(() => {
             this._text.domElem.fadeOut();
             this._textReverse.domElem.fadeOut();
+            this._waitingAction = new AnotherDeviceActionWidget(900, 100, 150, 310, TAKE_TABLET_WHITE_IMG);
+            this._waitingAction.domElem.css('z-index', ElementWidget.zIndexGlobal + 1);
+            this._waitingAction.addTo('#app');
             resolve();
           }, 400)
         });
