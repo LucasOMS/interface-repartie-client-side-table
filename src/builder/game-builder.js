@@ -18,7 +18,7 @@ import { ExplorePlaceAsTabletBuilder } from './explore-place-as-tablet-builder';
 import { LockerRoomBuilder } from './locker-room-builder';
 import { StadiumBuilder } from './stadium-builder';
 import { AdidasBuilder } from './adidas-builder';
-import {SupporterBuilder} from './supporter';
+import { SupporterBuilder } from './supporter';
 
 export class GameBuilder extends Builder {
   constructor() {
@@ -27,8 +27,14 @@ export class GameBuilder extends Builder {
     this._stadium = new StadiumBuilder();
     this._supporter = new SupporterBuilder();
     const test = new TagDetector();
-    test.onTag = (tag) => {
-      console.log(tag);
+    test.onTag = () => {
+      this.undraw();
+      if (this._endGameBuilder) {
+        this._endGameBuilder.destroy();
+      }
+      if (this._supporter) {
+        this._supporter.destroy();
+      }
       this._endGameBuilder = new EndGameBuilder();
       this._endGameBuilder.bindEvents();
       this._endGameBuilder.draw();
@@ -145,7 +151,9 @@ export class GameBuilder extends Builder {
   }
 
   undraw() {
-    this._stadium.undraw();
+    if (this._stadium) {
+      this._stadium.undraw();
+    }
     if (this._clueBallWidget) {
       this._clueBallWidget.domElem.remove();
     }

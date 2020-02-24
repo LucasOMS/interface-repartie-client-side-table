@@ -61,11 +61,7 @@ class SocketIOClient {
   start(socketIOUrl = 'http://localhost:10000/') {
     this._client = io(socketIOUrl);
     this._client.on(REGISTRATION_ASK, () => {
-      console.log('Type of device ask by the server');
       this._registerDevice();
-    });
-    this._client.on('PING', () => {
-      console.log('Pong');
     });
   }
 

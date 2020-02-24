@@ -16,6 +16,19 @@ body {
     animation: popup .5s forwards;
 }
 
+.rotate {
+    animation: rotate 10s infinite linear;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .stadium-interactive {
     transition: left 2s;
 }

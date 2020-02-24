@@ -46,7 +46,6 @@ export class AdidasBuilder extends Builder {
   }
 
   async transition(name) {
-    console.log(`Start transition : ${name} `);
     switch (name) {
       case AdidasBuilder.TRANSITIONS.START:
         this._scientist.domElem.addClass('smooth-translate');

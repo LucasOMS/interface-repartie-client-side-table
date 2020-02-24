@@ -110,11 +110,14 @@ export class StadiumBuilder extends Builder {
   }
 
   undraw() {
-    this._background.domElem.remove();
-    this._supporter.domElem.remove();
-    this._clue.domElem.remove();
-    this._referee.domElem.remove();
-    this._stadium.domElem.remove();
+    if (this._background) this._background.domElem.remove();
+    if (this._text) this._text.domElem.remove();
+    if (this._textReverse) this._textReverse.domElem.remove();
+    if (this._supporter) this._supporter.domElem.remove();
+    if (this._clue) this._clue.domElem.remove();
+    if (this._referee) this._referee.domElem.remove();
+    if (this._stadium) this._stadium.domElem.remove();
+    if (this._waitingAction) this._waitingAction.domElem.remove();
   }
 
   undrawText() {
