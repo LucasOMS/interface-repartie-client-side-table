@@ -68,6 +68,8 @@ export class AdidasBuilder extends Builder {
             }
             this._dialog = new ImageElementWidget(1150, 10, 746, 449, 0, 1, DIALOG_BALL_IMG);
             this.rootElement.append(this._dialog.domElem);
+            this._exclam = new StaticImageWidget(1360, 200, 70, 285, EXCLAM_IMG);
+            this._exclam.domElem.addClass('popup');
             this._exclam.addTo(this.rootElement);
             this._audio = new Audio(AUDIO_2);
             this._audio.autoplay = true;
