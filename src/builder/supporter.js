@@ -8,13 +8,18 @@ import {
   DIALOG_SUPPORTER_2_IMG,
   DIALOG_SUPPORTER_3_IMG,
   DIALOG_SUPPORTER_4_IMG,
-  DIALOG_SUPPORTER_5_IMG, SUPPORTER_AUDIO_1, SUPPORTER_AUDIO_2, SUPPORTER_AUDIO_3, SUPPORTER_AUDIO_4, SUPPORTER_AUDIO_5, GAME_BACKGROUND_IMG,
+  DIALOG_SUPPORTER_5_IMG,
+  SUPPORTER_AUDIO_1,
+  SUPPORTER_AUDIO_2,
+  SUPPORTER_AUDIO_3,
+  SUPPORTER_AUDIO_4,
+  SUPPORTER_AUDIO_5,
+  GAME_BACKGROUND_IMG,
 } from '../utils/constants';
 
 export class SupporterBuilder extends Builder {
   constructor() {
     super();
-    this.state = 'START';
     this.rootElement = $('#app');
   }
 

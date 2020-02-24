@@ -12,7 +12,6 @@ import ImageClicWidget from '../widget/images/image-clic-widget';
 import StaticImageWidget from '../widget/images/static-image-widget';
 import {
   EXPLORE_PLACE,
-  GAME_BACKGROUND_IMG,
   NOTE_IMG,
   REFEREE_AFTER_IMG,
   REFEREE_IMG,
@@ -49,9 +48,6 @@ export class StadiumBuilder extends Builder {
   }
 
   _drawInitialStadium() {
-    this._background = new StaticImageWidget(0, 0, 1920, 1080, GAME_BACKGROUND_IMG);
-    this._background.domElem.css('z-index', -50);
-    this.rootElement.append(this._background.domElem);
     this._stadium = new ImageClicWidget(15, WINDOW_HEIGHT / 2 - (1037 / 2), 715, 1037, STADIUM_IMG);
     this._stadium.domElem.addClass('popup');
     this.rootElement.append(this._stadium.domElem);
