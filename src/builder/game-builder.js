@@ -66,7 +66,7 @@ export class GameBuilder extends Builder {
           this._addClue(clueId);
           if (clueId === CLUE_SHOES_ID) {
             await this._supporter.transition(SupporterBuilder.TRANSITIONS.START_TALK4);
-            // await this._supporter.transition(SupporterBuilder.TRANSITIONS.FINISH_TALK4);
+            await this._supporter.transition(SupporterBuilder.TRANSITIONS.FINISH_TALK4);
             this._adidas = new AdidasBuilder();
             this._adidas.bindEvents();
             this._adidas.draw();

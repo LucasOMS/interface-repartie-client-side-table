@@ -90,14 +90,14 @@ export class SupporterBuilder extends Builder {
             this._dialog = new ImageElementWidget(50, 800, 774, 188, 0, 1, DIALOG_SUPPORTER_4_IMG);
             this._dialog.addTo(this.rootElement);
             resolve();
-          }, 3000)
+          }, 1000)
         });
       case SupporterBuilder.TRANSITIONS.FINISH_TALK4:
         return new Promise((resolve) => {
           setTimeout(() => {
             this._dialog.domElem.fadeOut();
             resolve();
-          }, 200)
+          }, 10000)
         });
       case SupporterBuilder.TRANSITIONS.START_TALK5:
         return new Promise((resolve) => {
