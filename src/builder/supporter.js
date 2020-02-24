@@ -3,10 +3,12 @@ import ImageElementWidget from 'tuiomanager/widgets/ElementWidget/ImageElementWi
 import Builder from './builder';
 import StaticImageWidget from '../widget/images/static-image-widget';
 import {
-  AUDIO_1,
   SUPPORTER_IMG,
   DIALOG_SUPPORTER_1_IMG,
-  DIALOG_SUPPORTER_2_IMG, DIALOG_SUPPORTER_3_IMG, DIALOG_SUPPORTER_4_IMG, DIALOG_SUPPORTER_5_IMG,
+  DIALOG_SUPPORTER_2_IMG,
+  DIALOG_SUPPORTER_3_IMG,
+  DIALOG_SUPPORTER_4_IMG,
+  DIALOG_SUPPORTER_5_IMG, SUPPORTER_AUDIO_1, SUPPORTER_AUDIO_2, SUPPORTER_AUDIO_3, SUPPORTER_AUDIO_4, SUPPORTER_AUDIO_5,
 } from '../utils/constants';
 
 export class SupporterBuilder extends Builder {
@@ -41,7 +43,7 @@ export class SupporterBuilder extends Builder {
       case SupporterBuilder.TRANSITIONS.START_TALK1:
         return new Promise((resolve) => {
           setTimeout(() => {
-            this._audio = new Audio(AUDIO_1);
+            this._audio = new Audio(SUPPORTER_AUDIO_1);
             this._audio.autoplay = true;
             this._audio.play();
             this._dialog = new ImageElementWidget(1130, 650, 779, 196, 0, 1, DIALOG_SUPPORTER_1_IMG);
@@ -53,7 +55,7 @@ export class SupporterBuilder extends Builder {
         return new Promise((resolve) => {
           setTimeout(() => {
             this._dialog.domElem.fadeOut();
-            this._audio = new Audio(AUDIO_1);
+            this._audio = new Audio(SUPPORTER_AUDIO_2);
             this._audio.autoplay = true;
             this._audio.play();
             this._dialog = new ImageElementWidget(1130, 650, 779, 123, 0, 1, DIALOG_SUPPORTER_2_IMG);
@@ -65,7 +67,7 @@ export class SupporterBuilder extends Builder {
         return new Promise((resolve) => {
           setTimeout(() => {
             this._dialog.domElem.fadeOut();
-            this._audio = new Audio(AUDIO_1);
+            this._audio = new Audio(SUPPORTER_AUDIO_3);
             this._audio.autoplay = true;
             this._audio.play();
             this._dialog = new ImageElementWidget(1130, 650, 779, 166, 0, 1, DIALOG_SUPPORTER_3_IMG);
@@ -77,7 +79,7 @@ export class SupporterBuilder extends Builder {
         return new Promise((resolve) => {
           setTimeout(() => {
             this._dialog.domElem.fadeOut();
-            this._audio = new Audio(AUDIO_1);
+            this._audio = new Audio(SUPPORTER_AUDIO_4);
             this._audio.autoplay = true;
             this._audio.play();
             this._dialog = new ImageElementWidget(50, 800, 774, 188, 0, 1, DIALOG_SUPPORTER_4_IMG);
@@ -95,7 +97,7 @@ export class SupporterBuilder extends Builder {
       case SupporterBuilder.TRANSITIONS.START_TALK5:
         return new Promise((resolve) => {
           setTimeout(() => {
-            this._audio = new Audio(AUDIO_1);
+            this._audio = new Audio(SUPPORTER_AUDIO_5);
             this._audio.autoplay = true;
             this._audio.play();
             this._dialog = new ImageElementWidget(50, 800, 774, 188, 0, 1, DIALOG_SUPPORTER_5_IMG);

@@ -35,8 +35,8 @@ export const LOCKER_ROOM_LOCKERS_IMG = 'assets/places/locker-room-lockers.svg';
 /* characters */
 export const SUPPORTER_IMG = 'assets/characters/supporter.svg';
 export const SCIENTIST_IMG = 'assets/characters/scientist.png';
-export const REFEREE_IMG = 'assets/characters/referee.png';
-export const REFEREE_AFTER_IMG = 'assets/characters/referee_after.png';
+export const REFEREE_IMG = 'assets/characters/referee.svg';
+export const REFEREE_AFTER_IMG = 'assets/characters/referee_after.svg';
 export const REFEREE_END_IMG = 'assets/characters/referee_end.png';
 /* dialogs */
 export const DIALOG_BALL_IMG = 'assets/dialogs/expert_on_ball.png';
@@ -52,6 +52,12 @@ export const DIALOG_SUPPORTER_6_IMG = 'assets/dialogs/supporter6.png';
 export const AUDIO_1 = 'assets/sounds/vocal1.mp3';
 export const AUDIO_2 = 'assets/sounds/vocal2.mp3';
 export const AUDIO_3 = 'assets/sounds/vocal3.mp3';
+export const SUPPORTER_AUDIO_1 = 'assets/sounds/supporter_1.mp3';
+export const SUPPORTER_AUDIO_2 = 'assets/sounds/supporter_2.mp3';
+export const SUPPORTER_AUDIO_3 = 'assets/sounds/supporter_3.mp3';
+export const SUPPORTER_AUDIO_4 = 'assets/sounds/supporter_4.mp3';
+export const SUPPORTER_AUDIO_5 = 'assets/sounds/supporter_5.mp3';
+export const SUPPORTER_AUDIO_6 = 'assets/sounds/supporter_6.mp3';
 /* disconnect */
 export const VR_DISCONNECTED_IMG = 'assets/devices/disconnected/vr_disconnected.png';
 export const TABLET_DISCONNECTED_IMG = 'assets/devices/disconnected/tablet_disconnected.png';
