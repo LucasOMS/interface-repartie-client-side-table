@@ -8,7 +8,7 @@ import {
   DIALOG_SUPPORTER_2_IMG,
   DIALOG_SUPPORTER_3_IMG,
   DIALOG_SUPPORTER_4_IMG,
-  DIALOG_SUPPORTER_5_IMG, SUPPORTER_AUDIO_1, SUPPORTER_AUDIO_2, SUPPORTER_AUDIO_3, SUPPORTER_AUDIO_4, SUPPORTER_AUDIO_5,
+  DIALOG_SUPPORTER_5_IMG, SUPPORTER_AUDIO_1, SUPPORTER_AUDIO_2, SUPPORTER_AUDIO_3, SUPPORTER_AUDIO_4, SUPPORTER_AUDIO_5, GAME_BACKGROUND_IMG,
 } from '../utils/constants';
 
 export class SupporterBuilder extends Builder {
@@ -32,9 +32,11 @@ export class SupporterBuilder extends Builder {
   }
 
   draw() {
+    this._background = new StaticImageWidget(0, 0, 1920, 1080, GAME_BACKGROUND_IMG);
+    this._background.domElem.css('z-index', -50);
+    this.rootElement.append(this._background.domElem);
     this._supporter = new StaticImageWidget(735, 600, 512, 580, SUPPORTER_IMG);
     this._supporter.addTo('#app');
-    this.transition(SupporterBuilder.TRANSITIONS.START_TALK1);
   }
 
   undraw() {
@@ -55,6 +57,12 @@ export class SupporterBuilder extends Builder {
             this._dialog.addTo(this.rootElement);
             resolve();
           }, 1000)
+        });
+      case SupporterBuilder.TRANSITIONS.FINISH_TALK1:
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, 11000)
         });
       case SupporterBuilder.TRANSITIONS.START_TALK2:
         return new Promise((resolve) => {

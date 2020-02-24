@@ -145,8 +145,10 @@ export class GameBuilder extends Builder {
     }
   }
 
-  draw() {
+  async draw() {
     this._supporter.draw();
+    await this._supporter.transition(SupporterBuilder.TRANSITIONS.START_TALK1);
+    await this._supporter.transition(SupporterBuilder.TRANSITIONS.FINISH_TALK1);
     this._stadium.draw();
   }
 
