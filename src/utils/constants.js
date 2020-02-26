@@ -14,6 +14,7 @@ export const VR_IMAGE_SRC_PATH = 'assets/devices/vr.png';
 /* utils */
 export const HOME_BACKGROUND_IMG = 'assets/utils/home-background.png';
 export const GAME_BACKGROUND_IMG = 'assets/utils/game-background.png';
+export const GAME_BACKGROUND_IMG_NO_TRANSPARENT = 'assets/utils/game-background-no-transparent.png';
 export const JOURNAL_IMG = 'assets/utils/journal.png';
 export const REVERSE_JOURNAL_IMG = 'assets/utils/journal-reverse.png';
 export const SYMBOLS_IMG = 'assets/utils/symbols.png';
@@ -87,7 +88,7 @@ const NETWORK_PROFILES = {
   PROD: 'PROD',
 };
 const currentProfile = NETWORK_PROFILES.LOCAL; // Shorthand to change when deploying
-const NETWORK_PATH = 'http://192.168.1.9';
+const NETWORK_PATH = 'http://192.168.1.5';
 const LOCAL_PATH = 'http://localhost';
 export const SERVER_REST_ROOT_PATH = `${currentProfile === NETWORK_PROFILES.LOCAL ? LOCAL_PATH : NETWORK_PATH}:4444`;
 export const SOCKET_ENDPOINT = `${currentProfile === NETWORK_PROFILES.LOCAL ? LOCAL_PATH : NETWORK_PATH}:10000/`;

@@ -26,19 +26,18 @@ export class GameBuilder extends Builder {
     this.rootElement = $('#app');
     this._stadium = new StadiumBuilder();
     this._supporter = new SupporterBuilder();
-    const test = new TagDetector();
-    test.onTag = () => {
-      this.undraw();
+    const tagDetector = new TagDetector();
+    tagDetector.onTag = () => {
       if (this._endGameBuilder) {
         this._endGameBuilder.destroy();
-      }
-      if (this._supporter) {
-        this._supporter.destroy();
       }
       this._endGameBuilder = new EndGameBuilder();
       this._endGameBuilder.bindEvents();
       this._endGameBuilder.draw();
-    }
+    };
+    tagDetector.onTagRemove = () => {
+      this._endGameBuilder.destroy();
+    };
   }
 
   bindEvents() {
