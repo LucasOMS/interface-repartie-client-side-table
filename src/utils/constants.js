@@ -18,6 +18,7 @@ export const GAME_BACKGROUND_IMG_NO_TRANSPARENT = 'assets/utils/game-background-
 export const JOURNAL_IMG = 'assets/utils/journal.png';
 export const REVERSE_JOURNAL_IMG = 'assets/utils/journal-reverse.png';
 export const JOURNAL_END_IMG = 'assets/utils/journal-end.svg';
+export const JOURNAL_END_REVERSE_IMG = 'assets/utils/journal-end-reverse.svg';
 export const SYMBOLS_IMG = 'assets/utils/symbols.png';
 export const REVERSE_SYMBOLS_IMG = 'assets/utils/symbols-reverse.png';
 export const EXCLAM_IMG = 'assets/utils/exclam.png';

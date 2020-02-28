@@ -5,11 +5,11 @@
  */
 import $ from 'jquery/dist/jquery.min'
 import TUIOManager from 'tuiomanager/core/TUIOManager'
-import SocketIOClient from './SocketIOClient/SocketIOClient'
-import { PROFILES, SOCKET_ENDPOINT } from './utils/constants';
+import { GameBuilder } from './builder/game-builder';
 import { GameHomeBuilder, GameHomeExternalAction } from './builder/game-home-builder';
 import { HomeBuilder, HomeExternalAction } from './builder/home-builder';
-import { GameBuilder } from './builder/game-builder';
+import SocketIOClient from './SocketIOClient/SocketIOClient'
+import { PROFILES, SOCKET_ENDPOINT } from './utils/constants';
 
 /* TUIOManager start */
 const tuioManager = new TUIOManager();
