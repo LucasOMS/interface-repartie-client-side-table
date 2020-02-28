@@ -26,6 +26,8 @@ export class AdidasBuilder extends Builder {
       START: 'START',
       START_TALK_BALL: 'START_TALK_BALL',
       START_TALK_SHOES: 'START_TALK_SHOES',
+      FINISH_TALK_BALL: 'FINISH_TALK_BALL',
+      FINISH_TALK_SHOES: 'FINISH_TALK_SHOES',
     }
   }
 
@@ -93,6 +95,18 @@ export class AdidasBuilder extends Builder {
             this._audio.play();
             resolve();
           }, 3000)
+        });
+      case AdidasBuilder.TRANSITIONS.FINISH_TALK_SHOES:
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, 7000)
+        });
+      case AdidasBuilder.TRANSITIONS.FINISH_TALK_BALL:
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, 41000)
         });
       default:
         console.error(`Unknown transition : ${name} `);

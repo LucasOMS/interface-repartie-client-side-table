@@ -1,23 +1,31 @@
 import $ from 'jquery/dist/jquery.min';
+import { WINDOW_HEIGHT, WINDOW_WIDTH } from 'tuiomanager/core/constants';
 import ImageElementWidget from 'tuiomanager/widgets/ElementWidget/ImageElementWidget/ImageElementWidget';
+import VideoElementWidget from 'tuiomanager/widgets/ElementWidget/VideoElementWidget/VideoElementWidget';
+import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import {
   CLUE_BALL_ID,
   CLUE_BALLON_IMG,
-  CLUE_FOUND, CLUE_NOTE_ID,
-  CLUE_SHOES_ID, CLUE_SHOES_IMG,
-  DEVICE_DISCONNECTED, END_TALK, EXPLORE_PLACE, LOCKER_ROOM_ID, SCIENTIST_DROP_ZONE_NAME,
+  CLUE_FOUND,
+  CLUE_NOTE_ID,
+  CLUE_SHOES_ID,
+  CLUE_SHOES_IMG,
+  DEVICE_DISCONNECTED,
+  END_TALK,
+  EXPLORE_PLACE,
+  LOCKER_ROOM_ID,
+  MATCH_VIDEO_PATH,
+  SCIENTIST_DROP_ZONE_NAME,
   STADIUM_ID,
 } from '../utils/constants';
-import SocketIOClient from '../SocketIOClient/SocketIOClient';
 import { DragWidget } from '../widget/decorators/drag-n-drop/drag-widget';
-import { TagDetector } from '../widget/tag-detector';
+import { AdidasBuilder } from './adidas-builder';
 import Builder from './builder';
 import { DisconnectedDeviceBuilder } from './disconnected-device-builder';
 import { EndGameBuilder } from './end-game-builder';
 import { ExplorePlaceAsTabletBuilder } from './explore-place-as-tablet-builder';
 import { LockerRoomBuilder } from './locker-room-builder';
 import { StadiumBuilder } from './stadium-builder';
-import { AdidasBuilder } from './adidas-builder';
 import { SupporterBuilder } from './supporter';
 
 export class GameBuilder extends Builder {
@@ -26,18 +34,8 @@ export class GameBuilder extends Builder {
     this.rootElement = $('#app');
     this._stadium = new StadiumBuilder();
     this._supporter = new SupporterBuilder();
-    const tagDetector = new TagDetector();
-    tagDetector.onTag = () => {
-      if (this._endGameBuilder) {
-        this._endGameBuilder.destroy();
-      }
-      this._endGameBuilder = new EndGameBuilder();
-      this._endGameBuilder.bindEvents();
-      this._endGameBuilder.draw();
-    };
-    tagDetector.onTagRemove = () => {
-      this._endGameBuilder.destroy();
-    };
+    this._showedShoes = false;
+    this._showedBall = false;
   }
 
   bindEvents() {
@@ -118,6 +116,13 @@ export class GameBuilder extends Builder {
           if (zone === SCIENTIST_DROP_ZONE_NAME) {
             await this._adidas.transition(AdidasBuilder.TRANSITIONS.START_TALK_BALL);
             console.log('Show ball to scientist');
+            this._showedBall = true;
+            if (this._showedShoes && this._showedBall) {
+              await this._adidas.transition(AdidasBuilder.TRANSITIONS.FINISH_TALK_BALL)
+                .then(() => {
+                  this.startMatchVideo();
+                });
+            }
           }
         };
         break;
@@ -135,13 +140,39 @@ export class GameBuilder extends Builder {
         this._shoeBallWidget.onDrop = async (zone) => {
           if (zone === SCIENTIST_DROP_ZONE_NAME) {
             await this._adidas.transition(AdidasBuilder.TRANSITIONS.START_TALK_SHOES);
-            console.log('Show shoes to scientist');
+            this._showedShoes = true;
+            if (this._showedShoes && this._showedBall) {
+              this._adidas.transition(AdidasBuilder.TRANSITIONS.FINISH_TALK_SHOES)
+                .then(() => {
+                  this.startMatchVideo();
+                });
+            }
           }
         };
         break;
       default:
         console.log(`Unknown clue id : ${clueId}`);
     }
+  }
+
+  async startMatchVideo() {
+    await this._supporter.transition(SupporterBuilder.TRANSITIONS.START_TALK5);
+    await this._supporter.transition(SupporterBuilder.TRANSITIONS.FINISH_TALK5)
+      .then(() => {
+        if (this._video) this._video.domElem.remove();
+        this._video = new VideoElementWidget(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, 1, MATCH_VIDEO_PATH);
+        this._video.addTo(this.rootElement);
+        this._video.playPauseVideo();
+        setTimeout(() => {
+          this._video.domElem.remove();
+          if (this._endGameBuilder) {
+            this._endGameBuilder.destroy();
+          }
+          this._endGameBuilder = new EndGameBuilder();
+          this._endGameBuilder.bindEvents();
+          this._endGameBuilder.draw();
+        }, (3 * 60 + 13) * 1000)
+      });
   }
 
   async draw() {

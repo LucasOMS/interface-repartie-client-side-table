@@ -33,6 +33,7 @@ export class SupporterBuilder extends Builder {
       START_TALK4: 'START_TALK4',
       FINISH_TALK4: 'FINISH_TALK4',
       START_TALK5: 'START_TALK5',
+      FINISH_TALK5: 'FINISH_TALK5',
     }
   }
 
@@ -122,6 +123,12 @@ export class SupporterBuilder extends Builder {
             this._dialog.addTo(this.rootElement);
             resolve();
           }, 3000)
+        });
+      case SupporterBuilder.TRANSITIONS.FINISH_TALK5:
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, 7000);
         });
       default:
         console.error(`Unknown transition : ${transition} `);

@@ -21,9 +21,7 @@ socketIOClient.start(SOCKET_ENDPOINT);
 
 /* App Code */
 const buildApp = (profile) => {
-  if (profile === PROFILES.LOCAL) {
-    TUIOManager.getInstance().showInteractions = true;
-  }
+  TUIOManager.getInstance().showInteractions = profile === PROFILES.LOCAL;
   const homeBuilder = new HomeBuilder();
   homeBuilder.bindEvents();
   homeBuilder.draw();
@@ -40,13 +38,10 @@ const buildApp = (profile) => {
       gameBuilder.bindEvents();
       gameBuilder.draw();
     })
-  })
-  // const endGameBuilder = new EndGameBuilder();
-  // endGameBuilder.draw();
-  // endGameBuilder.bindEvents();
+  });
 };
 
 $(window)
   .ready(() => {
-    buildApp(PROFILES.PROD)
+    buildApp(PROFILES.LOCAL)
   });

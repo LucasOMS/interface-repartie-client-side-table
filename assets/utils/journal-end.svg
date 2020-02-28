@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="558.22" height="507.308" viewBox="0 0 558.22 507.308">
+    <g id="Composant_1_1" data-name="Composant 1 – 1" transform="matrix(0.966, -0.259, 0.259, 0.966, 0, 121.904)">
+        <g id="Groupe_6" data-name="Groupe 6">
+            <path id="Rectangle_13" data-name="Rectangle 13"
+                  d="M0,0H440a0,0,0,0,1,0,0V321a33,33,0,0,1-33,33H24A24,24,0,0,1,0,330V0A0,0,0,0,1,0,0Z"
+                  transform="translate(31 45)" fill="#ececec"/>
+            <path id="Rectangle_7" data-name="Rectangle 7"
+                  d="M0,0H440a0,0,0,0,1,0,0V399a0,0,0,0,1,0,0H24A24,24,0,0,1,0,375V0A0,0,0,0,1,0,0Z" fill="#fff"/>
+            <path id="Tracé_2" data-name="Tracé 2" d="M894.016,348.016h0L895,725.3" transform="translate(-455 -348)"
+                  fill="none" stroke="#707070" stroke-width="1"/>
+        </g>
+        <g id="Groupe_5" data-name="Groupe 5" transform="translate(32.276 61.695)">
+            <rect id="Rectangle_8" data-name="Rectangle 8" width="143" height="107" transform="translate(2.999 38.58)"
+                  fill="#707070"/>
+        </g>
+        <text id="MATCH_EN_RèGLE" data-name="MATCH EN RèGLE" transform="translate(220 70)" stroke="#000"
+              stroke-width="2" font-size="40" font-family="SegoeUI-Bold, Segoe UI" font-weight="700">
+            <tspan x="-166.895" y="0">MATCH EN RÈGLE</tspan>
+        </text>
+        <text id="a_été_déclaré_en_règle._L_AS_Monaco_declare_Nos_joueurs_travaille_dur_tous_les_jours_et_cette_fois_particulièrement_leur_travail_a_pu_briller_"
+              data-name="a été déclaré en règle.
+
+L&apos;AS Monaco declare &quot;Nos joueurs travaille dur tous les jours et cette fois particulièrement, leur travail a pu briller&quot;"
+              transform="translate(31.069 210.457)" font-size="24" font-family="SegoeUI-Bold, Segoe UI"
+              font-weight="700">
+            <tspan x="0" y="26">a été déclaré en règle.</tspan>
+            <tspan x="0" y="50"></tspan>
+            <tspan x="0" y="74">L&apos;AS Monaco declare &quot;Nos joueurs</tspan>
+            <tspan x="0" y="98">travaille dur tous les jours et cette</tspan>
+            <tspan x="0" y="122">fois particulièrement, leur travail a</tspan>
+            <tspan x="0" y="146">pu briller&quot;</tspan>
+        </text>
+        <text id="L_entraînement_des_joueurs_a_payé_Ni_arbitre_acheté_ni_astuce._Le_match_AS_Monaco_-_OGC_Nice_a_été_déclaré_en_règle._"
+              data-name="L&apos;entraînement des joueurs a payé
+Ni arbitre acheté ni astuce. Le match AS Monaco - OGC Nice a été déclaré en règle. "
+              transform="translate(193.826 91.451)" font-size="24" font-family="SegoeUI-Bold, Segoe UI"
+              font-weight="700">
+            <tspan x="0" y="26">L&apos;entraînement des</tspan>
+            <tspan x="0" y="50">joueurs a payé</tspan>
+            <tspan x="0" y="74">Ni arbitre acheté ni</tspan>
+            <tspan x="0" y="98">astuce. Le match AS</tspan>
+            <tspan x="0" y="122">Monaco - OGC Nice</tspan>
+        </text>
+    </g>
+</svg>

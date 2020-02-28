@@ -17,6 +17,7 @@ export const GAME_BACKGROUND_IMG = 'assets/utils/game-background.png';
 export const GAME_BACKGROUND_IMG_NO_TRANSPARENT = 'assets/utils/game-background-no-transparent.png';
 export const JOURNAL_IMG = 'assets/utils/journal.png';
 export const REVERSE_JOURNAL_IMG = 'assets/utils/journal-reverse.png';
+export const JOURNAL_END_IMG = 'assets/utils/journal-end.svg';
 export const SYMBOLS_IMG = 'assets/utils/symbols.png';
 export const REVERSE_SYMBOLS_IMG = 'assets/utils/symbols-reverse.png';
 export const EXCLAM_IMG = 'assets/utils/exclam.png';
@@ -59,6 +60,9 @@ export const SUPPORTER_AUDIO_3 = 'assets/sounds/supporter_3.mp3';
 export const SUPPORTER_AUDIO_4 = 'assets/sounds/supporter_4.mp3';
 export const SUPPORTER_AUDIO_5 = 'assets/sounds/supporter_5.mp3';
 export const SUPPORTER_AUDIO_6 = 'assets/sounds/supporter_6.mp3';
+/* video */
+export const MATCH_VIDEO_PATH = 'assets/videos/match.mp4';
+export const MATCH_VIDEO_PREVIEW_PATH = 'assets/videos/match_preview.png';
 /* disconnect */
 export const VR_DISCONNECTED_IMG = 'assets/devices/disconnected/vr_disconnected.png';
 export const TABLET_DISCONNECTED_IMG = 'assets/devices/disconnected/tablet_disconnected.png';

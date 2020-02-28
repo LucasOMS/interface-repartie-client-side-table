@@ -27,19 +27,28 @@ export class DragWidget extends ElementWidget {
       .css('transform', `rotate(${this._currentAngle}deg)`)
       .css('transform-origin', `scale(${this.scale})`)
       .append(widget.domElem);
-
+    this.widget = widget;
     this.canZoom(widget.canZoomTangible, widget.canZoomTactile);
     this.canRotate(widget.canRotateTangible, widget.canRotateTactile);
     this.canMove(true, true);
     this.canDelete(widget.canDeleteTangible, widget.canDeleteTactile);
-
     this.onDrop = () => {
     };
   }
 
+  onTouchCreation(tuioTouch) {
+    super.onTouchCreation(tuioTouch);
+    this.widget.onTouchCreation(tuioTouch);
+  }
+
+  onTouchUpdate(tuioTouch) {
+    super.onTouchUpdate(tuioTouch);
+    this.widget.onTouchUpdate(tuioTouch);
+  }
+
+
   onTouchDeletion(tuioTouchId) {
     const touch = this.touches[tuioTouchId];
-    super.onTouchDeletion(tuioTouchId);
     // Stop there if the touch release isn't on this widget
     if (!touch) {
       return;
@@ -53,5 +62,7 @@ export class DragWidget extends ElementWidget {
         this.onDrop(dropOnWidgets[i].dropzoneName);
       }
     }
+    super.onTouchDeletion(tuioTouchId);
+    this.widget.onTouchDeletion(tuioTouchId);
   }
 }
