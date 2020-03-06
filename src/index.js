@@ -43,5 +43,5 @@ const buildApp = (profile) => {
 
 $(window)
   .ready(() => {
-    buildApp(PROFILES.LOCAL)
+    buildApp(PROFILES.PROD)
   });

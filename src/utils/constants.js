@@ -40,7 +40,7 @@ export const SUPPORTER_IMG = 'assets/characters/supporter.svg';
 export const SCIENTIST_IMG = 'assets/characters/scientist.png';
 export const REFEREE_IMG = 'assets/characters/referee.svg';
 export const REFEREE_AFTER_IMG = 'assets/characters/referee_after.svg';
-export const REFEREE_END_IMG = 'assets/characters/referee_end.png';
+export const REFEREE_END_IMG = 'assets/characters/referee_end.svg';
 /* dialogs */
 export const DIALOG_BALL_IMG = 'assets/dialogs/expert_on_ball.png';
 export const DIALOG_SHOES_IMG = 'assets/dialogs/expert_on_shoes.png';
@@ -92,8 +92,8 @@ const NETWORK_PROFILES = {
   LOCAL: 'LOCAL',
   PROD: 'PROD',
 };
-const currentProfile = NETWORK_PROFILES.LOCAL; // Shorthand to change when deploying
-const NETWORK_PATH = 'http://192.168.1.5';
+const currentProfile = NETWORK_PROFILES.PROD; // Shorthand to change when deploying
+const NETWORK_PATH = 'http://192.168.1.10';
 const LOCAL_PATH = 'http://localhost';
 export const SERVER_REST_ROOT_PATH = `${currentProfile === NETWORK_PROFILES.LOCAL ? LOCAL_PATH : NETWORK_PATH}:4444`;
 export const SOCKET_ENDPOINT = `${currentProfile === NETWORK_PROFILES.LOCAL ? LOCAL_PATH : NETWORK_PATH}:10000/`;

@@ -14,7 +14,7 @@ import {
   SUPPORTER_AUDIO_3,
   SUPPORTER_AUDIO_4,
   SUPPORTER_AUDIO_5,
-  GAME_BACKGROUND_IMG,
+  GAME_BACKGROUND_IMG, SUPPORTER_AUDIO_6,
 } from '../utils/constants';
 
 export class SupporterBuilder extends Builder {
@@ -34,6 +34,7 @@ export class SupporterBuilder extends Builder {
       FINISH_TALK4: 'FINISH_TALK4',
       START_TALK5: 'START_TALK5',
       FINISH_TALK5: 'FINISH_TALK5',
+      START_TALK6: 'START_TALK6',
     }
   }
 
@@ -125,6 +126,15 @@ export class SupporterBuilder extends Builder {
           }, 3000)
         });
       case SupporterBuilder.TRANSITIONS.FINISH_TALK5:
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, 7000);
+        });
+      case SupporterBuilder.TRANSITIONS.START_TALK6:
+        this._audio = new Audio(SUPPORTER_AUDIO_6);
+        this._audio.autoplay = true;
+        this._audio.play();
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve();

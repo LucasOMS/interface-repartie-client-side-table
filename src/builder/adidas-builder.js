@@ -64,43 +64,39 @@ export class AdidasBuilder extends Builder {
         });
       case AdidasBuilder.TRANSITIONS.START_TALK_BALL:
         return new Promise((resolve) => {
-          setTimeout(() => {
-            if (this._dialog !== undefined) {
-              this._dialog.domElem.fadeOut();
-            }
-            this._dialog = new ImageElementWidget(1150, 10, 746, 449, 0, 1, DIALOG_BALL_IMG);
-            this.rootElement.append(this._dialog.domElem);
-            this._exclam = new StaticImageWidget(1360, 200, 70, 285, EXCLAM_IMG);
-            this._exclam.domElem.addClass('popup');
-            this._exclam.addTo(this.rootElement);
-            this._audio = new Audio(AUDIO_2);
-            this._audio.autoplay = true;
-            this._audio.play();
-            resolve();
-          }, 3000)
+          if (this._dialog !== undefined) {
+            this._dialog.domElem.fadeOut();
+          }
+          this._dialog = new ImageElementWidget(1150, 10, 746, 449, 0, 1, DIALOG_BALL_IMG);
+          this.rootElement.append(this._dialog.domElem);
+          this._exclam = new StaticImageWidget(1360, 200, 70, 285, EXCLAM_IMG);
+          this._exclam.domElem.addClass('popup');
+          this._exclam.addTo(this.rootElement);
+          this._audio = new Audio(AUDIO_2);
+          this._audio.autoplay = true;
+          this._audio.play();
+          resolve();
         });
       case AdidasBuilder.TRANSITIONS.START_TALK_SHOES:
         return new Promise((resolve) => {
-          setTimeout(() => {
-            if (this._dialog !== undefined) {
-              this._dialog.domElem.fadeOut();
-            }
-            this._dialog = new ImageElementWidget(1200, 50, 782, 175, 0, 1, DIALOG_SHOES_IMG);
-            this.rootElement.append(this._dialog.domElem);
-            this._exclam = new StaticImageWidget(1360, 200, 70, 285, EXCLAM_IMG);
-            this._exclam.domElem.addClass('popup');
-            this._exclam.addTo(this.rootElement);
-            this._audio = new Audio(AUDIO_3);
-            this._audio.autoplay = true;
-            this._audio.play();
-            resolve();
-          }, 3000)
+          if (this._dialog !== undefined) {
+            this._dialog.domElem.fadeOut();
+          }
+          this._dialog = new ImageElementWidget(1100, 50, 782, 175, 0, 1, DIALOG_SHOES_IMG);
+          this.rootElement.append(this._dialog.domElem);
+          this._exclam = new StaticImageWidget(1360, 200, 70, 285, EXCLAM_IMG);
+          this._exclam.domElem.addClass('popup');
+          this._exclam.addTo(this.rootElement);
+          this._audio = new Audio(AUDIO_3);
+          this._audio.autoplay = true;
+          this._audio.play();
+          resolve();
         });
       case AdidasBuilder.TRANSITIONS.FINISH_TALK_SHOES:
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve();
-          }, 7000)
+          }, 6000)
         });
       case AdidasBuilder.TRANSITIONS.FINISH_TALK_BALL:
         return new Promise((resolve) => {

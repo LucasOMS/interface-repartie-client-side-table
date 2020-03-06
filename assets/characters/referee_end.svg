@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="171.542" height="167.098" viewBox="0 0 171.542 167.098">
+    <g id="Groupe_24" data-name="Groupe 24" transform="translate(-1068 -873)">
+        <g id="Plan_de_travail_1" data-name="Plan de travail 1" transform="translate(1088 893)">
+            <rect id="Rectangle_37" data-name="Rectangle 37" width="125" height="125" rx="36" fill="#009245"/>
+            <path id="Tracé_17" data-name="Tracé 17"
+                  d="M51,89.8l-7.882,12.38,2.712,14.331L63.8,122.3l18.145-5.788,4.895-16.205L76.693,86.416Z"
+                  fill="#e5b283"/>
+            <path id="Tracé_18" data-name="Tracé 18"
+                  d="M37.437,82.205,54.028,98.41,70.3,96.349l17.33-18.608L89.812,39.5,61.668,33.678l-29.279,4.5Z"
+                  fill="#ffc78f"/>
+            <path id="Tracé_19" data-name="Tracé 19"
+                  d="M65.063,19.435l21.772,2.811,9.194,9.381,3,15.015-10.9,22.379-1.1-28.012-9.547-4.068L61.668,33.678Z"
+                  fill="#754c24"/>
+            <path id="Tracé_20" data-name="Tracé 20"
+                  d="M61.976,40.965l13.6-27.35L53.245,17.583,39.168,21.5,27.141,29.831,23.4,50.952,36.313,72.4,33.843,43.434,48.549,35.7Z"
+                  fill="#603813"/>
+            <path id="Tracé_21" data-name="Tracé 21" d="M60.907,60.036,58.019,77.355l6.35,2.084Z" fill="#d3a479"/>
+            <ellipse id="Ellipse_4" data-name="Ellipse 4" cx="5.159" cy="7.452" rx="5.159" ry="7.452"
+                     transform="translate(43.114 51.14)" fill="#fff"/>
+            <ellipse id="Ellipse_5" data-name="Ellipse 5" cx="5.159" cy="7.452" rx="5.159" ry="7.452"
+                     transform="translate(67.312 51.14)" fill="#fff"/>
+            <ellipse id="Ellipse_6" data-name="Ellipse 6" cx="1.301" cy="1.885" rx="1.301" ry="1.885"
+                     transform="translate(46.819 56.586)" fill="#1e1711"/>
+            <ellipse id="Ellipse_7" data-name="Ellipse 7" cx="1.367" cy="1.973" rx="1.367" ry="1.973"
+                     transform="translate(70.961 56.497)" fill="#1e1711"/>
+            <path id="Tracé_22" data-name="Tracé 22"
+                  d="M43.5,101.563l-19.2,2.106-14.21,12.843L7.463,125H120.138l-2.117-8.488-9.282-12.159-21.9-4.046L63.8,120.888Z"
+                  fill="#fff"/>
+            <path id="Tracé_23" data-name="Tracé 23"
+                  d="M52.5,86.416l21.2-3.737a12.909,12.909,0,0,1-8.72,8.632C58.019,93.207,52.5,86.416,52.5,86.416Z"
+                  fill="#917153"/>
+        </g>
+        <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(1090 895)" fill="none" stroke="#000"
+           stroke-width="22">
+            <circle cx="60.5" cy="60.5" r="60.5" stroke="none"/>
+            <circle cx="60.5" cy="60.5" r="71.5" fill="none"/>
+        </g>
+        <g id="Tracé_6" data-name="Tracé 6" transform="translate(127 -740.56)" fill="#fff">
+
+
+        </g>
+    </g>
+</svg>

@@ -163,7 +163,7 @@ export class GameBuilder extends Builder {
         this._video = new VideoElementWidget(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, 1, MATCH_VIDEO_PATH);
         this._video.addTo(this.rootElement);
         this._video.playPauseVideo();
-        setTimeout(() => {
+        setTimeout(async () => {
           this._video.domElem.remove();
           if (this._endGameBuilder) {
             this._endGameBuilder.destroy();
@@ -171,7 +171,8 @@ export class GameBuilder extends Builder {
           this._endGameBuilder = new EndGameBuilder();
           this._endGameBuilder.bindEvents();
           this._endGameBuilder.draw();
-        }, (3 * 60 + 13) * 1000)
+          await this._supporter.transition(SupporterBuilder.TRANSITIONS.START_TALK6);
+        }, 30000)
       });
   }
 
